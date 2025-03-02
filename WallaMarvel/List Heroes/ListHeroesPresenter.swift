@@ -4,16 +4,24 @@ protocol ListHeroesPresenterProtocol: AnyObject {
   var ui: ListHeroesUI? { get set }
   func screenTitle() -> String
   func getHeroes(from offset: Int) async
+  func loadMoreCharactersIfNeeded() async
 }
 
 protocol ListHeroesUI: AnyObject {
   func update(heroes: [Character])
+  func finishPagination()
 }
 
 final class ListHeroesPresenter: ListHeroesPresenterProtocol {
+
+  
   var ui: ListHeroesUI?
   private let getHeroesUseCase: GetHeroesUseCaseProtocol
   private var searchText = ""
+  private var limit = APIConstants.defaultLimit
+  private var totalCount = 0
+  private var currentOffset = 0
+  
   
   init(getHeroesUseCase: GetHeroesUseCaseProtocol = GetHeroes()) {
     self.getHeroesUseCase = getHeroesUseCase
@@ -27,12 +35,22 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
   
   func getHeroes(from offset: Int) async {
     let result = await getHeroesUseCase.execute(from: offset, by: searchText)
-      switch result {
-      case .success(let response):
-        ui?.update(heroes: response.results ?? [])
-      case .failure(let error):
-        print(error)
-      }
+    switch result {
+    case .success(let data):
+      totalCount = data.total ?? 0
+      ui?.update(heroes: data.results ?? [])
+    case .failure(let error):
+      print(error)
     }
   }
+  
+  
+  func loadMoreCharactersIfNeeded() async {
+    guard currentOffset < totalCount else {
+      ui?.finishPagination()
+      return }
+    currentOffset += limit
+    await getHeroes(from: currentOffset)
+  }
+}
   

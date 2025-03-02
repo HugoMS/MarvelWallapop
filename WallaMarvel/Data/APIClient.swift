@@ -4,6 +4,10 @@ protocol APIClientProtocol {
   func getHeroes(from offset: Int, by searchKey: String?) async throws -> BaseResponseModel<PaginatedResponseModel<CharacterDataModel>>
 }
 
+enum APIConstants {
+  static let defaultLimit = 100
+}
+
 final class APIClient: APIClientProtocol {
     enum Constant {
         static let privateKey = "188f9a5aa76846d907c41cbea6506e4cc455293f"
@@ -28,15 +32,15 @@ final class APIClient: APIClientProtocol {
   
   func getHeroes(from offset: Int, by searchKey: String?) async throws -> BaseResponseModel<PaginatedResponseModel<CharacterDataModel>> {
     let endpoint = "\(baseURL)/characters"
-    return try await fetchData(from: endpoint)
+    var urlComponents = URLComponents(string: endpoint)
+    urlComponents?.queryItems = generateAuthParameters().map { URLQueryItem(name: $0.key, value: $0.value) }
+    urlComponents?.queryItems?.append(URLQueryItem(name: "offset", value: "\(offset)"))
+    urlComponents?.queryItems?.append(URLQueryItem(name: "limit", value: APIConstants.defaultLimit.description))
+    guard let url = urlComponents?.url else { throw URLError(.badURL) }
+    return try await fetchData(from: url)
   }
   
-  private func fetchData<T: Decodable>(from urlString: String) async throws -> T {
-    var urlComponents = URLComponents(string: urlString)
-    urlComponents?.queryItems = generateAuthParameters().map { URLQueryItem(name: $0.key, value: $0.value) }
-    
-    guard let url = urlComponents?.url else { throw URLError(.badURL) }
-    
+  private func fetchData<T: Decodable>(from url: URL) async throws -> T {
     let (data, response) = try await URLSession.shared.data(from: url)
     
     guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
@@ -46,28 +50,4 @@ final class APIClient: APIClientProtocol {
     let decodedResponse = try JSONDecoder().decode(T.self, from: data)
     return decodedResponse
   }
-    
-//  func getHeroes(from offset: Int, by searchKey: String?) async throws -> BaseResponseModel<PaginatedResponseModel<CharacterDataModel>> {
-//        let ts = String(Int(Date().timeIntervalSince1970))
-//        let privateKey = Constant.privateKey
-//        let publicKey = Constant.publicKey
-//        let hash = "\(ts)\(privateKey)\(publicKey)".md5
-//        let parameters: [String: String] = ["apikey": publicKey,
-//                                            "ts": ts,
-//                                            "hash": hash]
-//        
-//        let endpoint = "https://gateway.marvel.com:443/v1/public/characters"
-//        var urlComponent = URLComponents(string: endpoint)
-//        urlComponent?.queryItems = parameters.map { (key, value) in
-//            URLQueryItem(name: key, value: value)
-//        }
-//        
-//        let urlRequest = URLRequest(url: urlComponent!.url!)
-//        
-//        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-//            let dataModel = try! JSONDecoder().decode(CharacterDataContainer.self, from: data!)
-//            completionBlock(dataModel)
-//            print(dataModel)
-//        }.resume()
-//    }
 }
