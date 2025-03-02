@@ -1,7 +1,7 @@
 import Foundation
 
 protocol GetHeroesUseCaseProtocol {
-    func execute(completionBlock: @escaping (CharacterDataContainer) -> Void)
+  func execute(from offset: Int, by searchKey: String?) async -> Result<PaginatedResponse<Character>, AppError>
 }
 
 struct GetHeroes: GetHeroesUseCaseProtocol {
@@ -11,7 +11,7 @@ struct GetHeroes: GetHeroesUseCaseProtocol {
         self.repository = repository
     }
     
-    func execute(completionBlock: @escaping (CharacterDataContainer) -> Void) {
-        repository.getHeroes(completionBlock: completionBlock)
+  func execute(from offset: Int, by searchKey: String?) async -> Result<PaginatedResponse<Character>, AppError> {
+    return await repository.getHeroes(from: offset, by: searchKey)
     }
 }

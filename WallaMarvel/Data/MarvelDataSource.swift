@@ -1,7 +1,9 @@
 import Foundation
 
+typealias HeroesResponse = BaseResponseModel<PaginatedResponseModel<CharacterDataModel>>
+
 protocol MarvelDataSourceProtocol {
-    func getHeroes(completionBlock: @escaping (CharacterDataContainer) -> Void)
+    func getHeroes(from offset: Int, by searchKey: String?) async throws -> PaginatedResponseModel<CharacterDataModel>
 }
 
 final class MarvelDataSource: MarvelDataSourceProtocol {
@@ -11,7 +13,8 @@ final class MarvelDataSource: MarvelDataSourceProtocol {
         self.apiClient = apiClient
     }
     
-    func getHeroes(completionBlock: @escaping (CharacterDataContainer) -> Void) {
-        return apiClient.getHeroes(completionBlock: completionBlock)
+  func getHeroes(from offset: Int, by searchKey: String?) async throws -> PaginatedResponseModel<CharacterDataModel> {
+    let result: HeroesResponse = try await apiClient.getHeroes(from: offset, by: searchKey)
+    return result.data
     }
 }

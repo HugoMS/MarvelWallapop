@@ -27,6 +27,13 @@
 		1A821ED82863081A0024D397 /* MarvelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A821ED72863081A0024D397 /* MarvelRepository.swift */; };
 		1A821EDA2863096C0024D397 /* ListHeroesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A821ED92863096C0024D397 /* ListHeroesPresenter.swift */; };
 		1AC0347F2863214900E93178 /* GetHeroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC0347E2863214900E93178 /* GetHeroes.swift */; };
+		68BE66172D7506960038D407 /* PaginatedResponseModel+DomainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE66162D7506960038D407 /* PaginatedResponseModel+DomainMapper.swift */; };
+		68BE66192D7506C10038D407 /* PaginatedResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE66182D7506C10038D407 /* PaginatedResponseModel.swift */; };
+		68BE661B2D7506D70038D407 /* DomainMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE661A2D7506D70038D407 /* DomainMapper.swift */; };
+		68BE661E2D7506FA0038D407 /* PaginatedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE661D2D7506FA0038D407 /* PaginatedResponse.swift */; };
+		68BE66202D7507440038D407 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE661F2D7507440038D407 /* Character.swift */; };
+		68BE66222D750B2B0038D407 /* BaseResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE66212D750B2B0038D407 /* BaseResponseModel.swift */; };
+		68BE66252D750E2D0038D407 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE66242D750E2D0038D407 /* AppError.swift */; };
 		AF99BE8C8FC1DE4178D39965 /* Pods_WallaMarvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27133A00A66EF91557A95FF4 /* Pods_WallaMarvel.framework */; };
 		B44173F44B16313EF24D8ED3 /* Pods_WallaMarvel_WallaMarvelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A318E79FD19C1EE3A972A3 /* Pods_WallaMarvel_WallaMarvelUITests.framework */; };
 		CEEB6D6D448C150745880569 /* Pods_WallaMarvelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D0BB56F90DDBDFBE6933F7 /* Pods_WallaMarvelTests.framework */; };
@@ -79,6 +86,13 @@
 		1AC0347E2863214900E93178 /* GetHeroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeroes.swift; sourceTree = "<group>"; };
 		27133A00A66EF91557A95FF4 /* Pods_WallaMarvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WallaMarvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D0BB56F90DDBDFBE6933F7 /* Pods_WallaMarvelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WallaMarvelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68BE66162D7506960038D407 /* PaginatedResponseModel+DomainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PaginatedResponseModel+DomainMapper.swift"; sourceTree = "<group>"; };
+		68BE66182D7506C10038D407 /* PaginatedResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResponseModel.swift; sourceTree = "<group>"; };
+		68BE661A2D7506D70038D407 /* DomainMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainMapper.swift; sourceTree = "<group>"; };
+		68BE661D2D7506FA0038D407 /* PaginatedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedResponse.swift; sourceTree = "<group>"; };
+		68BE661F2D7507440038D407 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		68BE66212D750B2B0038D407 /* BaseResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseModel.swift; sourceTree = "<group>"; };
+		68BE66242D750E2D0038D407 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		7E001A2658509E1DA6A8286B /* Pods-WallaMarvel-WallaMarvelUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallaMarvel-WallaMarvelUITests.debug.xcconfig"; path = "Target Support Files/Pods-WallaMarvel-WallaMarvelUITests/Pods-WallaMarvel-WallaMarvelUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B07DF4A661FBEFBDC6D96C2E /* Pods-WallaMarvelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallaMarvelTests.debug.xcconfig"; path = "Target Support Files/Pods-WallaMarvelTests/Pods-WallaMarvelTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B40C4BB3B0477474BE5C2C4E /* Pods-WallaMarvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallaMarvel.release.xcconfig"; path = "Target Support Files/Pods-WallaMarvel/Pods-WallaMarvel.release.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +214,8 @@
 		1A821EC62862FD650024D397 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				68BE66232D750E160038D407 /* Errors */,
+				68BE661C2D7506EF0038D407 /* Entity */,
 				1A821ED72863081A0024D397 /* MarvelRepository.swift */,
 				1AC0347D286320F000E93178 /* UseCases */,
 			);
@@ -209,6 +225,7 @@
 		1A821EC72862FD6E0024D397 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				68BE66152D75068D0038D407 /* Mappers */,
 				1A821ED5286305590024D397 /* MarvelDataSource.swift */,
 				1A821EC82862FE3C0024D397 /* APIClient.swift */,
 				1A821ED2286302D40024D397 /* DataModel */,
@@ -231,6 +248,8 @@
 				1A821ED3286302EC0024D397 /* CharacterResponseDataModel.swift */,
 				1A7B9BBC286D81AA00EBC1A6 /* CharacterDataModel.swift */,
 				1A7B9BBE286D81B600EBC1A6 /* Thumbnail.swift */,
+				68BE66182D7506C10038D407 /* PaginatedResponseModel.swift */,
+				68BE66212D750B2B0038D407 /* BaseResponseModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -241,6 +260,32 @@
 				1AC0347E2863214900E93178 /* GetHeroes.swift */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		68BE66152D75068D0038D407 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				68BE66162D7506960038D407 /* PaginatedResponseModel+DomainMapper.swift */,
+				68BE661A2D7506D70038D407 /* DomainMapper.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		68BE661C2D7506EF0038D407 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				68BE661D2D7506FA0038D407 /* PaginatedResponse.swift */,
+				68BE661F2D7507440038D407 /* Character.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		68BE66232D750E160038D407 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				68BE66242D750E2D0038D407 /* AppError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 		E6E551DC10F86994C93B46B1 /* Pods */ = {
@@ -501,11 +546,18 @@
 				1A0E3A992862F7E200132FCB /* AppDelegate.swift in Sources */,
 				1A821ECC2862FF990024D397 /* String+MD5.swift in Sources */,
 				1A821ED6286305590024D397 /* MarvelDataSource.swift in Sources */,
+				68BE66202D7507440038D407 /* Character.swift in Sources */,
+				68BE66252D750E2D0038D407 /* AppError.swift in Sources */,
 				1A3B732A286AE195007BF626 /* ListHeroesAdapter.swift in Sources */,
 				1A7B9BBF286D81B600EBC1A6 /* Thumbnail.swift in Sources */,
+				68BE661E2D7506FA0038D407 /* PaginatedResponse.swift in Sources */,
+				68BE66172D7506960038D407 /* PaginatedResponseModel+DomainMapper.swift in Sources */,
 				1A821EDA2863096C0024D397 /* ListHeroesPresenter.swift in Sources */,
 				1A0E3A9B2862F7E200132FCB /* SceneDelegate.swift in Sources */,
+				68BE661B2D7506D70038D407 /* DomainMapper.swift in Sources */,
+				68BE66222D750B2B0038D407 /* BaseResponseModel.swift in Sources */,
 				1A3B7326286ADD1E007BF626 /* ListHeroesTableView.swift in Sources */,
+				68BE66192D7506C10038D407 /* PaginatedResponseModel.swift in Sources */,
 				1A3B7328286ADEE6007BF626 /* ListHeroesTableViewCell.swift in Sources */,
 				1A821ED4286302EC0024D397 /* CharacterResponseDataModel.swift in Sources */,
 				1A821EC92862FE3C0024D397 /* APIClient.swift in Sources */,
