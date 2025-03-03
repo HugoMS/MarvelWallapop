@@ -2,6 +2,7 @@ import Foundation
 
 protocol APIClientProtocol {
   func getHeroes(from offset: Int, by searchKey: String?) async throws -> BaseResponseModel<PaginatedResponseModel<CharacterDataModel>>
+  func getData(by characterId: Int, from offset: Int, type: HeroDataType)  async throws -> BaseResponseModel<PaginatedResponseModel<HeroDataModel>>
 }
 
 enum APIConstants {
@@ -14,7 +15,7 @@ final class APIClient: APIClientProtocol {
         static let publicKey = "d575c26d5c746f623518e753921ac847"
     }
   
-  private let baseURL = "https://gateway.marvel.com/v1/public"
+  private let baseURL = "https://gateway.marvel.com/v1/public/characters"
   private let publicKey = Constant.publicKey
   private let privateKey = Constant.privateKey
   
@@ -31,7 +32,17 @@ final class APIClient: APIClientProtocol {
     init() { }
   
   func getHeroes(from offset: Int, by searchKey: String?) async throws -> BaseResponseModel<PaginatedResponseModel<CharacterDataModel>> {
-    let endpoint = "\(baseURL)/characters"
+    let endpoint = "\(baseURL)"
+    var urlComponents = URLComponents(string: endpoint)
+    urlComponents?.queryItems = generateAuthParameters().map { URLQueryItem(name: $0.key, value: $0.value) }
+    urlComponents?.queryItems?.append(URLQueryItem(name: "offset", value: "\(offset)"))
+    urlComponents?.queryItems?.append(URLQueryItem(name: "limit", value: APIConstants.defaultLimit.description))
+    guard let url = urlComponents?.url else { throw URLError(.badURL) }
+    return try await fetchData(from: url)
+  }
+  
+  func getData(by characterId: Int, from offset: Int, type: HeroDataType)  async throws -> BaseResponseModel<PaginatedResponseModel<HeroDataModel>> {
+    let endpoint = "\(baseURL)/\(characterId)/\(type.path)"
     var urlComponents = URLComponents(string: endpoint)
     urlComponents?.queryItems = generateAuthParameters().map { URLQueryItem(name: $0.key, value: $0.value) }
     urlComponents?.queryItems?.append(URLQueryItem(name: "offset", value: "\(offset)"))
