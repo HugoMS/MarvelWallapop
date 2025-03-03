@@ -12,8 +12,9 @@ final class DetailHeroView: UIView {
   
   // MARK: - UI Components
   
+  private weak var delegate: DetailHeroPresenterProtocol?
   
-  private let scrollView: UIScrollView = {
+  let scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.translatesAutoresizingMaskIntoConstraints = false
     return scrollView
@@ -62,15 +63,28 @@ final class DetailHeroView: UIView {
     return label
   }()
   
-  init(delegate: DetailHeroePresenterProtocol) {
-    self.delegate = delegate
+  let collectionView: UICollectionView = {
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    collectionView.translatesAutoresizingMaskIntoConstraints = false
+    return collectionView
+  }()
   
+  
+  init(delegate: DetailHeroPresenterProtocol) {
+    self.delegate = delegate
+    
     super.init(frame: .zero)
     setupView()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    layoutCollectionViewAndUpdateScrollViewContent()
+    
   }
   
   private func setupView() {
@@ -82,8 +96,16 @@ final class DetailHeroView: UIView {
     stackView.addArrangedSubview(heroImageView)
     stackView.addArrangedSubview(nameLabel)
     stackView.addArrangedSubview(descriptionLabel)
-    
+    contentView.addSubview(collectionView)
+    setupCollectionView()
     setupConstraints()
+  }
+  
+  private func setupCollectionView() {
+    collectionView.backgroundColor = nil
+    collectionView.showsVerticalScrollIndicator = false
+    collectionView.bounces = false
+    collectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
   }
   
   // MARK: - Constraints
@@ -107,6 +129,11 @@ final class DetailHeroView: UIView {
       
       heroImageView.widthAnchor.constraint(equalToConstant: 200),
       heroImageView.heightAnchor.constraint(equalToConstant: 250),
+      
+      collectionView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+      collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+      collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+      collectionView.heightAnchor.constraint(equalToConstant: 200)
     ])
   }
   
@@ -115,5 +142,18 @@ final class DetailHeroView: UIView {
     heroImageView.kf.setImage(with: character.thumbnailURL)
     nameLabel.text = character.name
     descriptionLabel.text = character.description
+  }
+  
+  func layoutCollectionViewAndUpdateScrollViewContent() {
+    // layout collection view
+    collectionView.collectionViewLayout.invalidateLayout()
+    collectionView.layoutIfNeeded()
+    collectionView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+    
+    layoutIfNeeded()
+    
+    let totalHeight = collectionView.frame.maxY
+    scrollView.contentSize.height = totalHeight
+    contentView.heightAnchor.constraint(equalToConstant: totalHeight).isActive = true
   }
 }

@@ -62,8 +62,13 @@ extension ListHeroesViewController: UITableViewDelegate {
     guard let character = listHeroesProvider?.heroes[indexPath.row] else { return }
     let presenter = DetailHeroPresenter(character: character)
     let detailHereoViewController = DetailHeroViewController(presenter: presenter)
+    presenter.inject(ui: detailHereoViewController)
     
     navigationController?.pushViewController(detailHereoViewController, animated: true)
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+      104
   }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
