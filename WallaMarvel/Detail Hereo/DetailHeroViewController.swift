@@ -10,10 +10,10 @@ import UIKit
 
 final class DetailHeroViewController: UIViewController {
   
-  let presenter: DetailHeroePresenterProtocol
+  let presenter: DetailHeroPresenterProtocol
   var mainView: DetailHeroView { return view as! DetailHeroView  }
   
-  init(presenter: DetailHeroePresenterProtocol) {
+  init(presenter: DetailHeroPresenterProtocol) {
     self.presenter = presenter
     super.init(nibName: nil, bundle: nil)
   }

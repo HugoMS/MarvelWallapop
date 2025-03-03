@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DetailHeroePresenterProtocol: AnyObject {
+protocol DetailHeroPresenterProtocol: AnyObject {
   func screenTitle() -> String
   func viewDidLoad() async
   func getCharacter() -> Character
@@ -28,7 +28,7 @@ final class DetailHeroPresenter {
 
 // MARK: - DetailHeroePresenterProtocol
 
-extension DetailHeroPresenter: DetailHeroePresenterProtocol {
+extension DetailHeroPresenter: DetailHeroPresenterProtocol {
   func screenTitle() -> String {
     character.name ?? ""
   }

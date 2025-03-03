@@ -12,7 +12,6 @@ final class DetailHeroView: UIView {
   
   // MARK: - UI Components
   
-  private weak var delegate: DetailHeroePresenterProtocol?
   
   private let scrollView: UIScrollView = {
     let scrollView = UIScrollView()
