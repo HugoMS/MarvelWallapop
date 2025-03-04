@@ -93,14 +93,15 @@ final class DetailHeroView: UIView {
       snapshot.appendItems( heroDetails.comics, toSection: .comics)
     }
     
-    if availableSections.contains(.events) {
-      snapshot.appendItems( heroDetails.events, toSection: .events)
-    }
     if availableSections.contains(.stories) {
       snapshot.appendItems( heroDetails.stories, toSection: .stories)
     }
     if availableSections.contains(.series) {
       snapshot.appendItems( heroDetails.series, toSection: .series)
+    }
+    
+    if availableSections.contains(.events) {
+      snapshot.appendItems( heroDetails.events, toSection: .events)
     }
     
     DispatchQueue.main.async { [weak self] in
@@ -116,8 +117,7 @@ final class DetailHeroView: UIView {
     }
     
     dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
-      let section = MarvelDetailSection.allCases[indexPath.section]
-      
+      guard let section = self.delegate?.getHeroDetails()?.availableSections()[indexPath.section] else { return UICollectionReusableView() }
      
       if section == .hero  {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeroHeaderView.reuseIdentifier, for: indexPath) as! HeroHeaderView

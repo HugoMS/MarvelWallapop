@@ -8,10 +8,22 @@
 import Foundation
 
 struct HeroDetails {
-  let comics: [HeroData]
-  let series: [HeroData]
-  let events: [HeroData]
-  let stories: [HeroData]
+  var comics: [HeroData]
+  var series: [HeroData]
+  var events: [HeroData]
+  var stories: [HeroData]
+  
+  init(
+    comics: [HeroData] = [],
+    series: [HeroData] = [],
+    events: [HeroData] = [],
+    stories: [HeroData] = []
+  ) {
+    self.comics = comics
+    self.series = series
+    self.events = events
+    self.stories = stories
+  }
 }
 
 extension HeroDetails {

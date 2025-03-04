@@ -46,22 +46,51 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
     character.name
   }
   
-  func viewDidLoad() async {
-    async let comics = getHeroDataUseCase.execute(by: character.id, from: 0, type: .comic)
-    async let series = getHeroDataUseCase.execute(by: character.id, from: 0, type: .series)
-    async let events = getHeroDataUseCase.execute(by: character.id, from: 0, type: .events)
-    async let stories = getHeroDataUseCase.execute(by: character.id, from: 0, type: .stories)
+  func viewDidLoad() {
+    heroDetails = HeroDetails()
+    Task { await fetchComics() }
+    Task { await fetchSeries() }
+    Task { await fetchEvents() }
+    Task { await fetchStories() }
+  }
+  
+  private func fetchComics() async {
     do {
-      let (storiesResult, seriesResult, eventsResult, comicsResult) = try await (stories.get(), series.get(), events.get(), comics.get())
-      heroDetails = HeroDetails(
-        comics: comicsResult.results ?? [],
-        series: seriesResult.results ?? [],
-        events: eventsResult.results ?? [],
-        stories: storiesResult.results ?? []
-      )
+      let comicsResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: .comic).get()
+      heroDetails?.comics = comicsResult.results ?? []
       await ui?.updateView()
     } catch {
-      print("Error: \(error)")
+      print("Error fetching comics: \(error)")
+    }
+  }
+  
+  private func fetchSeries() async {
+    do {
+      let seriesResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: .series).get()
+      heroDetails?.series = seriesResult.results ?? []
+      await ui?.updateView()
+    } catch {
+      print("Error fetching series: \(error)")
+    }
+  }
+  
+  private func fetchEvents() async {
+    do {
+      let eventsResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: .events).get()
+      heroDetails?.events = eventsResult.results ?? []
+      await ui?.updateView()
+    } catch {
+      print("Error fetching events: \(error)")
+    }
+  }
+  
+  private func fetchStories() async {
+    do {
+      let storiesResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: .stories).get()
+      heroDetails?.stories = storiesResult.results ?? []
+      await ui?.updateView()
+    } catch {
+      print("Error fetching stories: \(error)")
     }
   }
   
