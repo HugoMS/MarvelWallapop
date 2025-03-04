@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class SectionHeaderView: UICollectionReusableView {
   static let reuseIdentifier = "HeaderView"

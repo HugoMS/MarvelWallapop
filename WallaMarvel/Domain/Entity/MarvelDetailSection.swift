@@ -8,10 +8,11 @@
 import Foundation
 
 enum MarvelDetailSection: Int, CaseIterable {
-  case comics, events, stories, series
+  case hero, comics, events, stories, series
   
   var title: String {
     switch self {
+    case .hero: return "Hero"
     case .comics: return "Comics"
     case .events: return "Events"
     case .stories: return "Stories"

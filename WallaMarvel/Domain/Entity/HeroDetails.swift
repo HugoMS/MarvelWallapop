@@ -16,7 +16,7 @@ struct HeroDetails {
 
 extension HeroDetails {
   func availableSections() -> [MarvelDetailSection] {
-    var sections: [MarvelDetailSection] = []
+    var sections: [MarvelDetailSection] = [.hero]
     if !comics.isEmpty {
       sections.append(.comics)
     }

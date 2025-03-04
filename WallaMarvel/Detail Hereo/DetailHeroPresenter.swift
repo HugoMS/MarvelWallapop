@@ -43,14 +43,14 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
   }
   
   func screenTitle() -> String {
-    character.name ?? ""
+    character.name
   }
   
   func viewDidLoad() async {
-    async let comics = getHeroDataUseCase.execute(by: character.id ?? 0, from: 0, type: .comic)
-    async let series = getHeroDataUseCase.execute(by: character.id ?? 0, from: 0, type: .series)
-    async let events = getHeroDataUseCase.execute(by: character.id ?? 0, from: 0, type: .events)
-    async let stories = getHeroDataUseCase.execute(by: character.id ?? 0, from: 0, type: .stories)
+    async let comics = getHeroDataUseCase.execute(by: character.id, from: 0, type: .comic)
+    async let series = getHeroDataUseCase.execute(by: character.id, from: 0, type: .series)
+    async let events = getHeroDataUseCase.execute(by: character.id, from: 0, type: .events)
+    async let stories = getHeroDataUseCase.execute(by: character.id, from: 0, type: .stories)
     do {
       let (storiesResult, seriesResult, eventsResult, comicsResult) = try await (stories.get(), series.get(), events.get(), comics.get())
       heroDetails = HeroDetails(

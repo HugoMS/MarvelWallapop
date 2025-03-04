@@ -8,13 +8,10 @@
 import Foundation
 
 struct Character: Identifiable {
-  
-  let id: Int?
-  let name: String?
+  let id: Int
+  let name: String
   let description: String?
-  let modified: String?
   let thumbnailURL: URL?
-  var isFavorite: Bool?
   
   var safeDescription: String {
     if let description, !description.isEmpty {
@@ -24,16 +21,13 @@ struct Character: Identifiable {
     }
   }
   
-  init(id: Int?,
-       name: String?,
+  init(id: Int,
+       name: String,
        description: String? = nil,
-       modified: String? = nil,
-       thumbnailURL: URL? = nil,
-       isFavorite: Bool? = false) {
+       thumbnailURL: URL? = nil) {
     self.id = id
     self.name = name
     self.description = description
-    self.modified = modified
     self.thumbnailURL = thumbnailURL
   }
 }
