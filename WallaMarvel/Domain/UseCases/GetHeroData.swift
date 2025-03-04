@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum HeroDataType {
+enum HeroDataType: CaseIterable{
   case comic, series, events, stories
   
   var path: String {

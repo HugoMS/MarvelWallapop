@@ -43,54 +43,33 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
   }
   
   func screenTitle() -> String {
-    character.name
+    "Hero Detail"
   }
   
   func viewDidLoad() {
     heroDetails = HeroDetails()
-    Task { await fetchComics() }
-    Task { await fetchSeries() }
-    Task { await fetchEvents() }
-    Task { await fetchStories() }
+    for type in HeroDataType.allCases {
+      Task { await fetchHeroData(of: type) }
+    }
   }
   
-  private func fetchComics() async {
+  private func fetchHeroData(of type: HeroDataType) async {
     do {
-      let comicsResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: .comic).get()
-      heroDetails?.comics = comicsResult.results ?? []
+      let heroDataResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: type).get()
+      switch type {
+      case .comic:
+        heroDetails?.comics = heroDataResult.results ?? []
+      case .series:
+        heroDetails?.series = heroDataResult.results ?? []
+      case .events:
+        heroDetails?.events = heroDataResult.results ?? []
+      case .stories:
+        heroDetails?.stories = heroDataResult.results ?? []
+      }
+      
       await ui?.updateView()
     } catch {
       print("Error fetching comics: \(error)")
-    }
-  }
-  
-  private func fetchSeries() async {
-    do {
-      let seriesResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: .series).get()
-      heroDetails?.series = seriesResult.results ?? []
-      await ui?.updateView()
-    } catch {
-      print("Error fetching series: \(error)")
-    }
-  }
-  
-  private func fetchEvents() async {
-    do {
-      let eventsResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: .events).get()
-      heroDetails?.events = eventsResult.results ?? []
-      await ui?.updateView()
-    } catch {
-      print("Error fetching events: \(error)")
-    }
-  }
-  
-  private func fetchStories() async {
-    do {
-      let storiesResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: .stories).get()
-      heroDetails?.stories = storiesResult.results ?? []
-      await ui?.updateView()
-    } catch {
-      print("Error fetching stories: \(error)")
     }
   }
   
