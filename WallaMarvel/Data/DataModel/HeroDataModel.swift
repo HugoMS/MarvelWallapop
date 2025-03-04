@@ -20,7 +20,7 @@ extension HeroDataModel: DomainMapper {
     return HeroData(
       id: id,
       title: title,
-      thumbnailURL: thumbnail?.url
+      thumbnailURL: thumbnail?.url ?? URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_medium.jpg")
     )
   }
 }

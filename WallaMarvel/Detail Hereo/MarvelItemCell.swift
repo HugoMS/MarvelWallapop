@@ -41,8 +41,8 @@ class MarvelItemCell: UICollectionViewCell {
       stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
       stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
       stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-      imageView.heightAnchor.constraint(equalToConstant: 120),
-      imageView.widthAnchor.constraint(equalToConstant: 100)
+      imageView.heightAnchor.constraint(equalToConstant: 200),
+      imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor)
     ])
   }
   

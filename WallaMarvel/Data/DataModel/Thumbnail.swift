@@ -6,7 +6,7 @@ struct Thumbnail {
   
   var url: URL? {
     guard let path, let ext = thumbnailExtension else { return nil }
-    return URL(string: "\(path).\(ext)")
+    return URL(string: "\(path)/portrait_medium.\(ext)")
   }
 }
 
