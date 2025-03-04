@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HeroData: Identifiable {
+struct HeroData: Identifiable, Hashable {
   
   let id: Int
   let title: String

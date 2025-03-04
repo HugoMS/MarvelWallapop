@@ -11,7 +11,7 @@ protocol DetailHeroPresenterProtocol: AnyObject {
   func screenTitle() -> String
   func viewDidLoad() async
   func getCharacter() -> Character
-  func getHeroDataView() -> [SectionData]
+  func getHeroDetails() -> HeroDetails?
 }
 
 @MainActor
@@ -23,8 +23,7 @@ final class DetailHeroPresenter {
   private let getHeroDataUseCase: GetHeroDataUseCaseProtocol
   private let character: Character
   private weak var ui: DetailHeroUI?
-  
-  private var heroDataView: [SectionData] = []
+  public var heroDetails: HeroDetails?
   
   init(character: Character, getHereoDataUseCase: GetHeroDataUseCaseProtocol = GetHeroData()) {
     self.character = character
@@ -39,6 +38,10 @@ final class DetailHeroPresenter {
 // MARK: - DetailHeroePresenterProtocol
 
 extension DetailHeroPresenter: DetailHeroPresenterProtocol {
+  func getHeroDetails() -> HeroDetails? {
+    heroDetails
+  }
+  
   func screenTitle() -> String {
     character.name ?? ""
   }
@@ -50,12 +53,12 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
     async let stories = getHeroDataUseCase.execute(by: character.id ?? 0, from: 0, type: .stories)
     do {
       let (storiesResult, seriesResult, eventsResult, comicsResult) = try await (stories.get(), series.get(), events.get(), comics.get())
-      heroDataView = [
-        SectionData(title: "Comics", items: comicsResult.results),
-        SectionData(title: "Series", items: seriesResult.results),
-        SectionData(title: "Events", items: eventsResult.results),
-        SectionData(title: "Stories", items: storiesResult.results)
-      ]
+      heroDetails = HeroDetails(
+        comics: comicsResult.results ?? [],
+        series: seriesResult.results ?? [],
+        events: eventsResult.results ?? [],
+        stories: storiesResult.results ?? []
+      )
       await ui?.updateView()
     } catch {
       print("Error: \(error)")
@@ -65,14 +68,4 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
   func getCharacter() -> Character {
     character
   }
-  
-  func getHeroDataView() -> [SectionData] {
-    heroDataView
-  }
-}
-
-
-struct SectionData {
-  let title: String
-  let items: [HeroData]?
 }
