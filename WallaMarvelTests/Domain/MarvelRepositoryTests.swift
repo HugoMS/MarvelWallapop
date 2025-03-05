@@ -13,12 +13,12 @@ final class MarvelRepositoryTests: XCTestCase {
   // MARK: - Properties -
   
   var sut: MarvelRepository!
-  var dataSourceMock: MarvelDataSourceProtocolMock!
+  var dataSourceMock: MarvelDataSourceMock!
   
   // MARK: - Fake Data -
 
     override func setUpWithError() throws {
-      dataSourceMock = MarvelDataSourceProtocolMock()
+      dataSourceMock = MarvelDataSourceMock()
       sut = MarvelRepository(dataSource: dataSourceMock)
     }
 

@@ -1,5 +1,5 @@
 //
-//  MarvelDataSourceProtocolMock.swift
+//  MarvelDataSourceMock.swift
 //  WallaMarvelTests
 //
 //  Created by Hugo Morelli on 5/3/25.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import WallaMarvel
 
-class MarvelDataSourceProtocolMock: MarvelDataSourceProtocol {
+class MarvelDataSourceMock: MarvelDataSourceProtocol {
   var shouldThrowError = false
   var getHeroesCount = 0
   var getHeroesResult: PaginatedResponseModel<WallaMarvel.CharacterDataModel> = PaginatedResponseModel(offset: 0, limit: 0, total: 0, count: 0, results: [])
