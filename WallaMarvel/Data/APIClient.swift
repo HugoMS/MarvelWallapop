@@ -23,15 +23,13 @@ final class APIClient: APIClientProtocol {
     static let publicKey = "d575c26d5c746f623518e753921ac847"
   }
   
-  private let baseURL = "https://gateway.marvel.com/v1/public/characters"
-  private let publicKey = Constant.publicKey
-  private let privateKey = Constant.privateKey
+  private let baseURL = "https://gateway.marvel.com/v1/public/characters" 
   
   private func generateAuthParameters() -> [String: String] {
     let ts = String(Int(Date().timeIntervalSince1970))
-    let hash = "\(ts)\(privateKey)\(publicKey)".md5
+    let hash = "\(ts)\(Constant.privateKey)\(Constant.publicKey)".md5
     return [
-      "apikey": publicKey,
+      "apikey": Constant.publicKey,
       "ts": ts,
       "hash": hash
     ]
