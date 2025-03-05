@@ -14,7 +14,6 @@ protocol DetailHeroPresenterProtocol: AnyObject {
   func getHeroDetails() -> HeroDetails?
 }
 
-@MainActor
 protocol DetailHeroUI: AnyObject {
   func updateView()
 }
@@ -67,9 +66,9 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
         heroDetails?.stories = heroDataResult ?? []
       }
       
-      await ui?.updateView()
+      ui?.updateView()
     } catch {
-      print("Error fetching comics: \(error)")
+      print("Error fetching \(type) data: \(error)")
     }
   }
   
