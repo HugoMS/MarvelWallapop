@@ -3,53 +3,68 @@ import UIKit
 import Kingfisher
 
 final class ListHeroesTableViewCell: UITableViewCell {
-    private let heroeImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+  
+  private let heroImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleToFill
+    imageView.layer.cornerRadius = 16
+    imageView.clipsToBounds = true
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
+  }()
+  
+  private let overlayView: UIView = {
+    let view = UIView()
+    view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
+  private let heroeName: UILabel = {
+    let label = UILabel()
+    label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+    label.textColor = .white
+    label.textAlignment = .center
+    label.numberOfLines = 0
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
     
-    private let heroeName: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    contentView.backgroundColor = .clear
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
-    }
+    contentView.addSubview(heroImageView)
+    heroImageView.addSubview(overlayView)
+    overlayView.addSubview(heroeName)
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setup() {
-        addSubviews()
-        addContraints()
-    }
-    
-    private func addSubviews() {
-        addSubview(heroeImageView)
-        addSubview(heroeName)
-    }
-    
-    private func addContraints() {
-        NSLayoutConstraint.activate([
-            heroeImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            heroeImageView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            heroeImageView.heightAnchor.constraint(equalToConstant: 80),
-            heroeImageView.widthAnchor.constraint(equalToConstant: 80),
-            heroeImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
-            
-            heroeName.leadingAnchor.constraint(equalTo: heroeImageView.trailingAnchor, constant: 12),
-            heroeName.topAnchor.constraint(equalTo: heroeImageView.topAnchor, constant: 8),
-        ])
-    }
-    
-    func configure(model: Character) {
-      heroeImageView.kf.setImage(with: model.thumbnailURL)
-      heroeName.text = model.name
-    }
+    NSLayoutConstraint.activate([
+      heroImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+      heroImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+      heroImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+      heroImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 250),
+      heroImageView.widthAnchor.constraint(equalToConstant: 200),
+      
+      overlayView.leadingAnchor.constraint(equalTo: heroImageView.leadingAnchor),
+      overlayView.trailingAnchor.constraint(equalTo: heroImageView.trailingAnchor),
+      overlayView.bottomAnchor.constraint(equalTo: heroImageView.bottomAnchor),
+      
+      heroeName.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor, constant: 5),
+      heroeName.trailingAnchor.constraint(equalTo: overlayView.trailingAnchor, constant: -5),
+      heroeName.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor),
+      heroeName.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor),
+      heroeName.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor, constant: -5)
+    ])
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  
+  func configure(model: Character) {
+    heroImageView.kf.setImage(with: model.thumbnailURL)
+    heroeName.text = model.name
+  }
 }

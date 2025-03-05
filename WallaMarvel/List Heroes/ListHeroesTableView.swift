@@ -2,16 +2,12 @@ import Foundation
 import UIKit
 
 final class ListHeroesView: UIView {
-    enum Constant {
-        static let estimatedRowHeight: CGFloat = 120
-    }
     
     let heroesTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(ListHeroesTableViewCell.self, forCellReuseIdentifier: "ListHeroesTableViewCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = Constant.estimatedRowHeight
         return tableView
     }()
     

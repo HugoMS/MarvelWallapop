@@ -67,10 +67,6 @@ extension ListHeroesViewController: UITableViewDelegate {
     navigationController?.pushViewController(detailHereoViewController, animated: true)
   }
   
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      104
-  }
-  
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let contentHeight = scrollView.contentSize.height
     let offsetY = scrollView.contentOffset.y
