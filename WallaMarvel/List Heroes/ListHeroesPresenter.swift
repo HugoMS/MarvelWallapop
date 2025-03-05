@@ -13,7 +13,6 @@ protocol ListHeroesUI: AnyObject {
 }
 
 final class ListHeroesPresenter: ListHeroesPresenterProtocol {
-
   
   var ui: ListHeroesUI?
   private let getHeroesUseCase: GetHeroesUseCaseProtocol
@@ -34,12 +33,11 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
   // MARK: UseCases
   
   func getHeroes(from offset: Int) async {
-    let result = await getHeroesUseCase.execute(from: offset, by: searchText)
-    switch result {
-    case .success(let data):
+    do {
+      let data = try await getHeroesUseCase.execute(from: offset, by: searchText)
       totalCount = data.total ?? 0
       ui?.update(heroes: data.results ?? [])
-    case .failure(let error):
+    } catch {
       print(error)
     }
   }
@@ -53,4 +51,4 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
     await getHeroes(from: currentOffset)
   }
 }
-  
+

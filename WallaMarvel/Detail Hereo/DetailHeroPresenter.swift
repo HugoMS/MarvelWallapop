@@ -55,16 +55,16 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
   
   private func fetchHeroData(of type: HeroDataType) async {
     do {
-      let heroDataResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: type).get()
+      let heroDataResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: type).results
       switch type {
       case .comic:
-        heroDetails?.comics = heroDataResult.results ?? []
+        heroDetails?.comics = heroDataResult ?? []
       case .series:
-        heroDetails?.series = heroDataResult.results ?? []
+        heroDetails?.series = heroDataResult ?? []
       case .events:
-        heroDetails?.events = heroDataResult.results ?? []
+        heroDetails?.events = heroDataResult ?? []
       case .stories:
-        heroDetails?.stories = heroDataResult.results ?? []
+        heroDetails?.stories = heroDataResult ?? []
       }
       
       await ui?.updateView()

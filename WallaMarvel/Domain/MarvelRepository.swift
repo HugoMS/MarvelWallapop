@@ -1,8 +1,8 @@
 import Foundation
 
 protocol MarvelRepositoryProtocol {
-  func getHeroes(from offset: Int, by searchKey: String?) async -> Result<PaginatedResponse<Character>, AppError>
-  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType) async -> Result<PaginatedResponse<HeroData>, AppError>
+  func getHeroes(from offset: Int, by searchKey: String?) async throws -> PaginatedResponse<Character>
+  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType) async throws -> PaginatedResponse<HeroData>
 }
 
 final class MarvelRepository: MarvelRepositoryProtocol {
@@ -12,25 +12,23 @@ final class MarvelRepository: MarvelRepositoryProtocol {
     self.dataSource = dataSource
   }
   
-  func getHeroes(from offset: Int, by searchKey: String?) async -> Result<PaginatedResponse<Character>, AppError> {
+  func getHeroes(from offset: Int, by searchKey: String?) async throws -> PaginatedResponse<Character> {
     do {
       let data = try await dataSource.getHeroes(from: offset, by: searchKey)
       let characters = data.toDomain(dataType: Character.self)
-      return .success(characters)
+      return characters
     } catch {
-      print(error.self)
-      return .failure(.networkError("Error fetching data"))
+      throw error
     }
   }
   
-  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType) async -> Result<PaginatedResponse<HeroData>, AppError> {
+  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType)  async throws -> PaginatedResponse<HeroData> {
     do {
       let data = try await dataSource.getHeroData(by: characterId, from: offset, type: type)
       let heroData = data.toDomain(dataType: HeroData.self)
-      return .success(heroData)
+      return heroData
     } catch {
-      print(error.self)
-      return .failure(.networkError("Error fetching data"))
+      throw error
     }
   }
 }

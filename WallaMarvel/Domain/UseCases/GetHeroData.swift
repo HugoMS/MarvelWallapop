@@ -27,7 +27,7 @@ enum HeroDataType: CaseIterable{
 protocol  GetHeroDataUseCaseProtocol {
   
   /// Get a list of comics from the Marvel API.
-  func execute(by characterId: Int, from offset: Int, type: HeroDataType) async -> Result<PaginatedResponse<HeroData>, AppError>
+  func execute(by characterId: Int, from offset: Int, type: HeroDataType) async throws -> PaginatedResponse<HeroData>
 }
 
 // MARK: - Implementation -
@@ -40,8 +40,8 @@ class GetHeroData: GetHeroDataUseCaseProtocol {
     self.repository = repository
   }
   
-  func execute(by characterId: Int, from offset: Int, type: HeroDataType) async -> Result<PaginatedResponse<HeroData>, AppError> {
-    return await repository.getHeroData(by: characterId, from: offset, type: type)
+  func execute(by characterId: Int, from offset: Int, type: HeroDataType) async throws -> PaginatedResponse<HeroData> {
+    return try await repository.getHeroData(by: characterId, from: offset, type: type)
   }
   
 }
