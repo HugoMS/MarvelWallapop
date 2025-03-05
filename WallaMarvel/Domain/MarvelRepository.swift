@@ -17,8 +17,8 @@ final class MarvelRepository: MarvelRepositoryProtocol {
       let data = try await dataSource.getHeroes(from: offset, by: searchKey)
       let characters = data.toDomain(dataType: Character.self)
       return characters
-    } catch {
-      throw error
+    } catch let error as NetworkError {
+      throw map(error)
     }
   }
   
@@ -27,8 +27,21 @@ final class MarvelRepository: MarvelRepositoryProtocol {
       let data = try await dataSource.getHeroData(by: characterId, from: offset, type: type)
       let heroData = data.toDomain(dataType: HeroData.self)
       return heroData
-    } catch {
-      throw error
+    } catch let error as NetworkError {
+      throw map(error)
+    }
+  }
+  
+  func map(_ error: NetworkError) -> AppError {
+    switch error {
+    case .networkError(let error):
+      return  AppError.networkError(error.localizedDescription)
+    case .invalidServerResponse:
+      return AppError.serverError("Invalid Server Response")
+    case .decodingError(let error):
+      return AppError.parsingError( error.localizedDescription)
+    case .badURL:
+      return AppError.serverError("Bad URL")
     }
   }
 }

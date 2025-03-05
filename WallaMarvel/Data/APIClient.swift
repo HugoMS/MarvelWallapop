@@ -9,7 +9,7 @@ enum APIConstants {
   static let defaultLimit = 100
 }
 
-enum NetworkError: LocalizedError {
+enum NetworkError: Error {
   case networkError(URLError)
   case invalidServerResponse
   case decodingError(DecodingError)
