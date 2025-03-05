@@ -51,4 +51,3 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
     await getHeroes(from: currentOffset)
   }
 }
-
