@@ -2,7 +2,7 @@ import Foundation
 
 protocol MarvelRepositoryProtocol {
   func getHeroes(from offset: Int, by searchKey: String?) async -> Result<PaginatedResponse<Character>, AppError>
-  func getData(by characterId: Int, from offset: Int, type: HeroDataType) async -> Result<PaginatedResponse<HeroData>, AppError>
+  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType) async -> Result<PaginatedResponse<HeroData>, AppError>
 }
 
 final class MarvelRepository: MarvelRepositoryProtocol {
@@ -23,9 +23,9 @@ final class MarvelRepository: MarvelRepositoryProtocol {
     }
   }
   
-  func getData(by characterId: Int, from offset: Int, type: HeroDataType) async -> Result<PaginatedResponse<HeroData>, AppError> {
+  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType) async -> Result<PaginatedResponse<HeroData>, AppError> {
     do {
-      let data = try await dataSource.getData(by: characterId, from: offset, type: type)
+      let data = try await dataSource.getHeroData(by: characterId, from: offset, type: type)
       let heroData = data.toDomain(dataType: HeroData.self)
       return .success(heroData)
     } catch {

@@ -41,7 +41,7 @@ class GetHeroData: GetHeroDataUseCaseProtocol {
   }
   
   func execute(by characterId: Int, from offset: Int, type: HeroDataType) async -> Result<PaginatedResponse<HeroData>, AppError> {
-    return await repository.getData(by: characterId, from: offset, type: type)
+    return await repository.getHeroData(by: characterId, from: offset, type: type)
   }
   
 }

@@ -5,7 +5,7 @@ typealias DataResponse = BaseResponseModel<PaginatedResponseModel<HeroDataModel>
 
 protocol MarvelDataSourceProtocol {
   func getHeroes(from offset: Int, by searchKey: String?) async throws -> PaginatedResponseModel<CharacterDataModel>
-  func getData(by characterId: Int, from offset: Int, type: HeroDataType) async throws -> PaginatedResponseModel<HeroDataModel>
+  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType) async throws -> PaginatedResponseModel<HeroDataModel>
 }
 
 final class MarvelDataSource: MarvelDataSourceProtocol {
@@ -20,8 +20,8 @@ final class MarvelDataSource: MarvelDataSourceProtocol {
     return result.data
   }
   
-  func getData(by characterId: Int, from offset: Int, type: HeroDataType) async throws -> PaginatedResponseModel<HeroDataModel> {
-    let response: DataResponse = try await apiClient.getData(by: characterId, from: offset, type: type)
+  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType) async throws -> PaginatedResponseModel<HeroDataModel> {
+    let response: DataResponse = try await apiClient.getHeroData(by: characterId, from: offset, type: type)
     return response.data
   }
 }

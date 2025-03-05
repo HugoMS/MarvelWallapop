@@ -2,7 +2,7 @@ import Foundation
 
 protocol APIClientProtocol {
   func getHeroes(from offset: Int, by searchKey: String?) async throws -> BaseResponseModel<PaginatedResponseModel<CharacterDataModel>>
-  func getData(by characterId: Int, from offset: Int, type: HeroDataType)  async throws -> BaseResponseModel<PaginatedResponseModel<HeroDataModel>>
+  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType)  async throws -> BaseResponseModel<PaginatedResponseModel<HeroDataModel>>
 }
 
 enum APIConstants {
@@ -41,7 +41,8 @@ final class APIClient: APIClientProtocol {
     return try await fetchData(from: url)
   }
   
-  func getData(by characterId: Int, from offset: Int, type: HeroDataType)  async throws -> BaseResponseModel<PaginatedResponseModel<HeroDataModel>> {
+  
+  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType)  async throws -> BaseResponseModel<PaginatedResponseModel<HeroDataModel>> {
     let endpoint = "\(baseURL)/\(characterId)/\(type.path)"
     var urlComponents = URLComponents(string: endpoint)
     urlComponents?.queryItems = generateAuthParameters().map { URLQueryItem(name: $0.key, value: $0.value) }
