@@ -24,10 +24,6 @@ final class ListHeroesViewController: BaseViewController {
     }
     title = presenter?.screenTitle()
     mainView.heroesTableView.delegate = self
-    
-    searchController.searchResultsUpdater = self
-    searchController.obscuresBackgroundDuringPresentation = false
-    searchController.searchBar.placeholder = "Buscar..."
   }
   
   func loadData() {

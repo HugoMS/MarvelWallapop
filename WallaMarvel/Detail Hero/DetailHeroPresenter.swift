@@ -11,7 +11,7 @@ protocol DetailHeroPresenterProtocol: AnyObject {
   func screenTitle() -> String
   func viewDidLoad() async
   func getCharacter() -> Character
-  func getHeroDetails() -> HeroDetails?
+  func getHeroDetails() -> HeroDetails
 }
 
 protocol DetailHeroUI: AnyObject {
@@ -22,11 +22,12 @@ final class DetailHeroPresenter {
   private let getHeroDataUseCase: GetHeroDataUseCaseProtocol
   private let character: Character
   private weak var ui: DetailHeroUI?
-  public var heroDetails: HeroDetails?
+  private var heroDetails: HeroDetails
   
   init(character: Character, getHereoDataUseCase: GetHeroDataUseCaseProtocol = GetHeroData()) {
     self.character = character
     self.getHeroDataUseCase = getHereoDataUseCase
+    self.heroDetails = HeroDetails(hero: character)
   }
   
   func inject(ui: DetailHeroUI) {
@@ -37,7 +38,7 @@ final class DetailHeroPresenter {
 // MARK: - DetailHeroePresenterProtocol
 
 extension DetailHeroPresenter: DetailHeroPresenterProtocol {
-  func getHeroDetails() -> HeroDetails? {
+  func getHeroDetails() -> HeroDetails {
     heroDetails
   }
   
@@ -46,7 +47,7 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
   }
   
   func viewDidLoad() {
-    heroDetails = HeroDetails()
+    heroDetails = HeroDetails(hero: character)
     for type in HeroDataType.allCases {
       Task { await fetchHeroData(of: type) }
     }
@@ -57,13 +58,13 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
       let heroDataResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: type).results
       switch type {
       case .comic:
-        heroDetails?.comics = heroDataResult ?? []
+        heroDetails.comics = heroDataResult ?? []
       case .series:
-        heroDetails?.series = heroDataResult ?? []
+        heroDetails.series = heroDataResult ?? []
       case .events:
-        heroDetails?.events = heroDataResult ?? []
+        heroDetails.events = heroDataResult ?? []
       case .stories:
-        heroDetails?.stories = heroDataResult ?? []
+        heroDetails.stories = heroDataResult ?? []
       }
       
         ui?.updateView()

@@ -8,17 +8,20 @@
 import Foundation
 
 struct HeroDetails {
+  var hero: Character
   var comics: [HeroData]
   var series: [HeroData]
   var events: [HeroData]
   var stories: [HeroData]
   
   init(
+    hero: Character,
     comics: [HeroData] = [],
     series: [HeroData] = [],
     events: [HeroData] = [],
     stories: [HeroData] = []
   ) {
+    self.hero = hero
     self.comics = comics
     self.series = series
     self.events = events

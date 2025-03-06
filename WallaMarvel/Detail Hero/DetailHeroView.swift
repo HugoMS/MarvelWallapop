@@ -15,16 +15,13 @@ final class DetailHeroView: UIView {
   
   private weak var delegate: DetailHeroPresenterProtocol?
   
-  private var collectionView: UICollectionView!
-
-  private var dataSource: UICollectionViewDiffableDataSource<MarvelDetailSection, HeroData>!
+  var collectionView: UICollectionView!
   
   init(delegate: DetailHeroPresenterProtocol) {
     self.delegate = delegate
     
     super.init(frame: .zero)
     configureCollectionView()
-    configureDataSource()
   }
   
   required init?(coder: NSCoder) {
@@ -82,53 +79,6 @@ final class DetailHeroView: UIView {
       section.boundarySupplementaryItems = [header]
       
       return section
-    }
-  }
-  
-  func update(with heroDetails: HeroDetails) {
-    var snapshot = NSDiffableDataSourceSnapshot<MarvelDetailSection, HeroData>()
-    let availableSections = heroDetails.availableSections()
-    snapshot.appendSections(availableSections)
-    if availableSections.contains(.comics) {
-      snapshot.appendItems( heroDetails.comics, toSection: .comics)
-    }
-    
-    if availableSections.contains(.stories) {
-      snapshot.appendItems( heroDetails.stories, toSection: .stories)
-    }
-    if availableSections.contains(.series) {
-      snapshot.appendItems( heroDetails.series, toSection: .series)
-    }
-    
-    if availableSections.contains(.events) {
-      snapshot.appendItems( heroDetails.events, toSection: .events)
-    }
-    
-    DispatchQueue.main.async { [weak self] in
-      self?.dataSource.apply(snapshot, animatingDifferences: true)
-    }
-  }
-  
-  private func configureDataSource() {
-    dataSource = UICollectionViewDiffableDataSource<MarvelDetailSection, HeroData>(collectionView: collectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MarvelItemCell.reuseIdentifier, for: indexPath) as! MarvelItemCell
-      cell.configure(with: item)
-      return cell
-    }
-    
-    dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
-      guard let section = self.delegate?.getHeroDetails()?.availableSections()[indexPath.section] else { return UICollectionReusableView() }
-     
-      if section == .hero  {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeroHeaderView.reuseIdentifier, for: indexPath) as! HeroHeaderView
-        guard let character = self.delegate?.getCharacter() else { return header }
-        header.configure(with: character.name, description: character.description, image: character.thumbnailURL)
-        return header
-      } else {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseIdentifier, for: indexPath) as! SectionHeaderView
-        header.setTitle(section.title)
-        return header
-      }
     }
   }
 }

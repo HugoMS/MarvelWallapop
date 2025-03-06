@@ -11,6 +11,7 @@ import UIKit
 final class DetailHeroViewController: BaseViewController {
   
   let presenter: DetailHeroPresenterProtocol
+  var detailHeroProvider: DetailHeroAdapter?
   var mainView: DetailHeroView { return view as! DetailHeroView  }
   
   init(presenter: DetailHeroPresenterProtocol) {
@@ -29,6 +30,7 @@ final class DetailHeroViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    detailHeroProvider = DetailHeroAdapter(collectionView: mainView.collectionView, heroDetails: presenter.getHeroDetails())
     Task {
       await presenter.viewDidLoad()
     }
@@ -42,9 +44,9 @@ extension DetailHeroViewController: DetailHeroUI {
 
   
   func updateView() {
-    guard let heroDetails = presenter.getHeroDetails() else { return }
+    let heroDetails = presenter.getHeroDetails()
     DispatchQueue.main.async {[weak self] in
-      self?.mainView.update(with: heroDetails)
+      self?.detailHeroProvider?.update(with: heroDetails)
     }
   }
 }
