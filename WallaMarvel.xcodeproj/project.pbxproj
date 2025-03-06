@@ -210,7 +210,7 @@
 				1A0E3A9A2862F7E200132FCB /* SceneDelegate.swift */,
 				68E07FD12D7A329600C32766 /* EmptyContentView.swift */,
 				1A821EC42862FD470024D397 /* List Heroes */,
-				684E37772D763F70007FE3E4 /* Detail Hereo */,
+				684E37772D763F70007FE3E4 /* Detail Hero */,
 				1A821EC62862FD650024D397 /* Domain */,
 				1A821EC72862FD6E0024D397 /* Data */,
 				1A0E3AA12862F7E300132FCB /* Assets.xcassets */,
@@ -308,7 +308,7 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
-		684E37772D763F70007FE3E4 /* Detail Hereo */ = {
+		684E37772D763F70007FE3E4 /* Detail Hero */ = {
 			isa = PBXGroup;
 			children = (
 				684E37782D763F7C007FE3E4 /* DetailHeroPresenter.swift */,
@@ -318,7 +318,7 @@
 				68FEFDAD2D779F1A00880A4D /* SectionHeaderView.swift */,
 				68FEFDAF2D77A57B00880A4D /* HeroHeaderView.swift */,
 			);
-			path = "Detail Hereo";
+			path = "Detail Hero";
 			sourceTree = "<group>";
 		};
 		689276E52D78DAD30024085C /* Domain */ = {
