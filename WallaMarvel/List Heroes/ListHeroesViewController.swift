@@ -1,22 +1,22 @@
 import UIKit
 
-final class ListHeroesViewController: UIViewController {
+final class ListHeroesViewController: BaseViewController {
   var mainView: ListHeroesView { return view as! ListHeroesView  }
-  
+  private var activityIndicator: UIActivityIndicatorView?
   var presenter: ListHeroesPresenterProtocol?
   var listHeroesProvider: ListHeroesAdapter?
   var isLoading = false
-  let activityIndicator = UIActivityIndicatorView(style: .medium)
-  
+  private let searchController = UISearchController(searchResultsController: nil)
   
   override func loadView() {
     view = ListHeroesView()
+    view.backgroundColor = .white
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    toggleActivityIndicator(visible: true)
     listHeroesProvider = ListHeroesAdapter(tableView: mainView.heroesTableView)
-    
     presenter?.ui = self
     Task {
       isLoading = true
@@ -24,12 +24,19 @@ final class ListHeroesViewController: UIViewController {
     }
     title = presenter?.screenTitle()
     mainView.heroesTableView.delegate = self
+    
+    searchController.searchResultsUpdater = self
+    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.searchBar.placeholder = "Buscar..."
   }
   
   func loadData() {
     guard !isLoading else { return }
     isLoading = true
     if listHeroesProvider?.heroes.count != 0 {
+      let activityIndicator = UIActivityIndicatorView(style: .medium)
+      activityIndicator.color = .gray
+      activityIndicator.startAnimating()
       let footerView = UIView(frame: CGRect(x: 0, y: 0, width: mainView.heroesTableView.bounds.width, height: 50))
       footerView.addSubview(activityIndicator)
       activityIndicator.center = footerView.center
@@ -43,17 +50,32 @@ final class ListHeroesViewController: UIViewController {
 }
 
 extension ListHeroesViewController: ListHeroesUI {
+  func showEmpty(delegate: (any EmptyContentViewProtocol)?) {
+    DispatchQueue.main.async { [weak self] in
+      self?.showEmptyContentView(delegate: delegate)
+    }
+  }
+  
   func update(heroes: [Character]) {
+    hideEmptyContentView()
     listHeroesProvider?.heroes += heroes
     isLoading = false
+    
     finishPagination()
+    DispatchQueue.main.async {
+      self.toggleActivityIndicator(visible: false)
+    }
   }
   
   func finishPagination() {
     DispatchQueue.main.async {
-      self.activityIndicator.stopAnimating()
       self.mainView.heroesTableView.tableFooterView = nil
     }
+  }
+  
+  func resetView() {
+    hideEmptyContentView()
+    toggleActivityIndicator(visible: true)
   }
 }
 
@@ -76,6 +98,28 @@ extension ListHeroesViewController: UITableViewDelegate {
       loadData()
     }
   }
-  
 }
 
+// MARK: - Private Methods
+
+private extension ListHeroesViewController {
+  func toggleActivityIndicator(visible: Bool) {
+    if visible {
+      let activityIndicator = UIActivityIndicatorView(style: .large)
+      activityIndicator.color = .gray
+      activityIndicator.startAnimating()
+      activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(activityIndicator)
+      NSLayoutConstraint.activate([
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+      ])
+      
+      self.activityIndicator = activityIndicator
+    }
+    else {
+      activityIndicator?.removeFromSuperview()
+      activityIndicator = nil
+    }
+  }
+}

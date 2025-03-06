@@ -21,16 +21,17 @@ class HeroHeaderView: UICollectionReusableView {
   
   private let nameLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.boldSystemFont(ofSize: 24)
-    label.textColor = .black
+    label.font = .boldSystemFont(ofSize: 24)
+    label.textColor = .label
     return label
   }()
   
   private let descriptionLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont.systemFont(ofSize: 16)
-    label.textColor = .black
+    label.font = .systemFont(ofSize: 16)
+    label.textColor = .label
     label.numberOfLines = 0
+    label.textAlignment = .center
     return label
   }()
   

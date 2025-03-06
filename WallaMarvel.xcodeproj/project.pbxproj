@@ -49,6 +49,8 @@
 		68BE66202D7507440038D407 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE661F2D7507440038D407 /* Character.swift */; };
 		68BE66222D750B2B0038D407 /* BaseResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE66212D750B2B0038D407 /* BaseResponseModel.swift */; };
 		68BE66252D750E2D0038D407 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE66242D750E2D0038D407 /* AppError.swift */; };
+		68E07FD22D7A329600C32766 /* EmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD12D7A329600C32766 /* EmptyContentView.swift */; };
+		68E07FD52D7A341D00C32766 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD42D7A341D00C32766 /* BaseViewController.swift */; };
 		68FEFDA82D779E2600880A4D /* MarvelItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFDA72D779E2600880A4D /* MarvelItemCell.swift */; };
 		68FEFDAA2D779E9F00880A4D /* HeroDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFDA92D779E9F00880A4D /* HeroDetails.swift */; };
 		68FEFDAC2D779EC400880A4D /* MarvelDetailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFDAB2D779EC400880A4D /* MarvelDetailSection.swift */; };
@@ -128,6 +130,8 @@
 		68BE661F2D7507440038D407 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		68BE66212D750B2B0038D407 /* BaseResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseModel.swift; sourceTree = "<group>"; };
 		68BE66242D750E2D0038D407 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		68E07FD12D7A329600C32766 /* EmptyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyContentView.swift; path = /Users/hugomorelli/Projects/MarvelWallapop/WallaMarvel/EmptyContentView.swift; sourceTree = "<absolute>"; };
+		68E07FD42D7A341D00C32766 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		68FEFDA72D779E2600880A4D /* MarvelItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelItemCell.swift; sourceTree = "<group>"; };
 		68FEFDA92D779E9F00880A4D /* HeroDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetails.swift; sourceTree = "<group>"; };
 		68FEFDAB2D779EC400880A4D /* MarvelDetailSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelDetailSection.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 			children = (
 				1A0E3A982862F7E200132FCB /* AppDelegate.swift */,
 				1A0E3A9A2862F7E200132FCB /* SceneDelegate.swift */,
+				68E07FD12D7A329600C32766 /* EmptyContentView.swift */,
 				1A821EC42862FD470024D397 /* List Heroes */,
 				684E37772D763F70007FE3E4 /* Detail Hereo */,
 				1A821EC62862FD650024D397 /* Domain */,
@@ -211,6 +216,7 @@
 				1A0E3AA12862F7E300132FCB /* Assets.xcassets */,
 				1A0E3AA32862F7E300132FCB /* LaunchScreen.storyboard */,
 				1A0E3AA62862F7E300132FCB /* Info.plist */,
+				68E07FD42D7A341D00C32766 /* BaseViewController.swift */,
 			);
 			path = WallaMarvel;
 			sourceTree = "<group>";
@@ -644,6 +650,7 @@
 				1AC0347F2863214900E93178 /* GetHeroes.swift in Sources */,
 				1A7B9BBD286D81AA00EBC1A6 /* CharacterDataModel.swift in Sources */,
 				68FEFDA82D779E2600880A4D /* MarvelItemCell.swift in Sources */,
+				68E07FD52D7A341D00C32766 /* BaseViewController.swift in Sources */,
 				1A0E3A992862F7E200132FCB /* AppDelegate.swift in Sources */,
 				1A821ECC2862FF990024D397 /* String+MD5.swift in Sources */,
 				1A821ED6286305590024D397 /* MarvelDataSource.swift in Sources */,
@@ -661,6 +668,7 @@
 				684E37832D76572F007FE3E4 /* DetailHeroView.swift in Sources */,
 				1A0E3A9B2862F7E200132FCB /* SceneDelegate.swift in Sources */,
 				68BE661B2D7506D70038D407 /* DomainMapper.swift in Sources */,
+				68E07FD22D7A329600C32766 /* EmptyContentView.swift in Sources */,
 				68BE66222D750B2B0038D407 /* BaseResponseModel.swift in Sources */,
 				1A3B7326286ADD1E007BF626 /* ListHeroesTableView.swift in Sources */,
 				68BE66192D7506C10038D407 /* PaginatedResponseModel.swift in Sources */,

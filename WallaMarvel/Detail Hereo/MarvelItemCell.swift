@@ -27,6 +27,7 @@ class MarvelItemCell: UICollectionViewCell {
     imageView.layer.cornerRadius = 10
     titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
     titleLabel.textAlignment = .center
+    titleLabel.textColor = .label
     titleLabel.numberOfLines = 2
     
     let stack = UIStackView(arrangedSubviews: [imageView, titleLabel])

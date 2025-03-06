@@ -17,6 +17,7 @@ class SectionHeaderView: UICollectionReusableView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+    titleLabel.textColor = .label
     addSubview(titleLabel)
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([

@@ -10,10 +10,11 @@ protocol ListHeroesPresenterProtocol: AnyObject {
 protocol ListHeroesUI: AnyObject {
   func update(heroes: [Character])
   func finishPagination()
+  func showEmpty(delegate: EmptyContentViewProtocol?)
+  func resetView()
 }
 
 final class ListHeroesPresenter: ListHeroesPresenterProtocol {
-  
   var ui: ListHeroesUI?
   private let getHeroesUseCase: GetHeroesUseCaseProtocol
   private var searchText = ""
@@ -38,10 +39,9 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
       totalCount = data.total ?? 0
       ui?.update(heroes: data.results ?? [])
     } catch {
-      print(error)
+      ui?.showEmpty(delegate: self)
     }
   }
-  
   
   func loadMoreCharactersIfNeeded() async {
     guard currentOffset < totalCount else {
@@ -50,4 +50,17 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
     currentOffset += limit
     await getHeroes(from: currentOffset)
   }
+}
+
+
+// MARK: - EmptyContentViewProtocol
+
+extension ListHeroesPresenter: EmptyContentViewProtocol {
+  func didTapReload() {
+    ui?.resetView()
+    Task {
+      await getHeroes(from: 0)
+    }
+  }
+  
 }

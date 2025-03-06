@@ -66,7 +66,8 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
         heroDetails?.stories = heroDataResult ?? []
       }
       
-      ui?.updateView()
+        ui?.updateView()
+      
     } catch {
       print("Error fetching \(type) data: \(error)")
     }

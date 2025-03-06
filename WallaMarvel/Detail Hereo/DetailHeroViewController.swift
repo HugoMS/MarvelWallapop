@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class DetailHeroViewController: UIViewController {
+final class DetailHeroViewController: BaseViewController {
   
   let presenter: DetailHeroPresenterProtocol
   var mainView: DetailHeroView { return view as! DetailHeroView  }
@@ -39,8 +39,12 @@ final class DetailHeroViewController: UIViewController {
 // MARK: - Private Methods
 
 extension DetailHeroViewController: DetailHeroUI {
+
+  
   func updateView() {
     guard let heroDetails = presenter.getHeroDetails() else { return }
-    mainView.update(with: heroDetails)
+    DispatchQueue.main.async {[weak self] in
+      self?.mainView.update(with: heroDetails)
+    }
   }
 }
