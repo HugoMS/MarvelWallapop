@@ -57,6 +57,7 @@ final class ListHeroesPresenterTests: XCTestCase {
     
     XCTAssertEqual(useCaseMock.executeCount, 1)
     XCTAssertEqual(viewMock.updateCount, 0)
+    XCTAssertEqual(viewMock.showEmptyCount, 1)
     
   }
   

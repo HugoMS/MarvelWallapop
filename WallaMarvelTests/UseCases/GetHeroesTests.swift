@@ -38,7 +38,6 @@ final class GetHeroesTests: XCTestCase {
   }
   
   func testExecuteFailure() async throws {
-    let expectedResponse: PaginatedResponse<Character> = PaginatedResponse(offset: 0, limit: 1, total: 1, count: 1, results: [ .init(id: 1, name: "Spiderman", description: "Spiderman description")])
     // Given
     repositoryMock.shouldThrowError = true
     
