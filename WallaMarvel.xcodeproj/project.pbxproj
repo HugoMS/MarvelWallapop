@@ -209,16 +209,13 @@
 			isa = PBXGroup;
 			children = (
 				1A0E3A982862F7E200132FCB /* AppDelegate.swift */,
-				1A0E3A9A2862F7E200132FCB /* SceneDelegate.swift */,
-				68E07FD12D7A329600C32766 /* EmptyContentView.swift */,
-				1A821EC42862FD470024D397 /* List Heroes */,
-				684E37772D763F70007FE3E4 /* Detail Hero */,
-				1A821EC62862FD650024D397 /* Domain */,
-				1A821EC72862FD6E0024D397 /* Data */,
 				1A0E3AA12862F7E300132FCB /* Assets.xcassets */,
-				1A0E3AA32862F7E300132FCB /* LaunchScreen.storyboard */,
+				1A821EC72862FD6E0024D397 /* Data */,
+				1A821EC62862FD650024D397 /* Domain */,
 				1A0E3AA62862F7E300132FCB /* Info.plist */,
-				68E07FD42D7A341D00C32766 /* BaseViewController.swift */,
+				1A0E3AA32862F7E300132FCB /* LaunchScreen.storyboard */,
+				68E07FD82D7A682800C32766 /* Presentation */,
+				1A0E3A9A2862F7E200132FCB /* SceneDelegate.swift */,
 			);
 			path = WallaMarvel;
 			sourceTree = "<group>";
@@ -395,6 +392,25 @@
 				68BE66242D750E2D0038D407 /* AppError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		68E07FD82D7A682800C32766 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				68E07FD92D7A684100C32766 /* CommonViews */,
+				684E37772D763F70007FE3E4 /* Detail Hero */,
+				1A821EC42862FD470024D397 /* List Heroes */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		68E07FD92D7A684100C32766 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				68E07FD12D7A329600C32766 /* EmptyContentView.swift */,
+				68E07FD42D7A341D00C32766 /* BaseViewController.swift */,
+			);
+			path = CommonViews;
 			sourceTree = "<group>";
 		};
 		E6E551DC10F86994C93B46B1 /* Pods */ = {
