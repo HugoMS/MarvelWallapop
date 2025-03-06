@@ -22,7 +22,9 @@ final class DetailHeroAdapter: NSObject {
   
   func configureDataSource() {
     dataSource = UICollectionViewDiffableDataSource<MarvelDetailSection, HeroData>(collectionView: collectionView) { (collectionView, indexPath, item) -> UICollectionViewCell? in
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MarvelItemCell.reuseIdentifier, for: indexPath) as! MarvelItemCell
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MarvelItemCell.reuseIdentifier, for: indexPath) as? MarvelItemCell else {
+        return UICollectionViewCell()
+      }
       cell.configure(with: item)
       return cell
     }
@@ -31,12 +33,14 @@ final class DetailHeroAdapter: NSObject {
       let section = self.heroDetails.availableSections()[indexPath.section]
       
       if section == .hero  {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeroHeaderView.reuseIdentifier, for: indexPath) as! HeroHeaderView
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeroHeaderView.reuseIdentifier, for: indexPath) as? HeroHeaderView else { return UICollectionReusableView() }
         let character =  self.heroDetails.hero
         header.configure(with: character.name, description: character.description, image: character.thumbnailURL)
         return header
       } else {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseIdentifier, for: indexPath) as! SectionHeaderView
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseIdentifier, for: indexPath) as? SectionHeaderView else {
+          return UICollectionReusableView()
+        }
         header.setTitle(section.title)
         return header
       }

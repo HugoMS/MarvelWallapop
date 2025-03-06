@@ -24,11 +24,10 @@ final class ListHeroesAdapter: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListHeroesTableViewCell", for: indexPath) as! ListHeroesTableViewCell
-        
-        let model = heroes[indexPath.row]
-        cell.configure(model: model)
-        
-        return cell
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListHeroesTableViewCell", for: indexPath) as? ListHeroesTableViewCell else { return UITableViewCell() }
+      let model = heroes[indexPath.row]
+      cell.configure(model: model)
+      
+      return cell
     }
 }
