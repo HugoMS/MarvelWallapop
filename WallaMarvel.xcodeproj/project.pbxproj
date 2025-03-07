@@ -52,6 +52,9 @@
 		68DEA7C52D7A9E2800FCCF4E /* GetHeroDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7C42D7A9E2800FCCF4E /* GetHeroDataTests.swift */; };
 		68DEA7C92D7AA55900FCCF4E /* MarvelDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7C82D7AA55900FCCF4E /* MarvelDataSourceTests.swift */; };
 		68DEA7CB2D7AA84600FCCF4E /* APIClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7CA2D7AA84600FCCF4E /* APIClientMock.swift */; };
+		68DEA7CE2D7AE55300FCCF4E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7CD2D7AE55300FCCF4E /* Coordinator.swift */; };
+		68DEA7D02D7AE57500FCCF4E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7CF2D7AE57500FCCF4E /* AppCoordinator.swift */; };
+		68DEA7D22D7AE60000FCCF4E /* DetailHeroCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7D12D7AE60000FCCF4E /* DetailHeroCoordinator.swift */; };
 		68E07FD22D7A329600C32766 /* EmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD12D7A329600C32766 /* EmptyContentView.swift */; };
 		68E07FD52D7A341D00C32766 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD42D7A341D00C32766 /* BaseViewController.swift */; };
 		68E07FD72D7A604800C32766 /* DetailHeroAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD62D7A604800C32766 /* DetailHeroAdapter.swift */; };
@@ -138,6 +141,9 @@
 		68DEA7C42D7A9E2800FCCF4E /* GetHeroDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeroDataTests.swift; sourceTree = "<group>"; };
 		68DEA7C82D7AA55900FCCF4E /* MarvelDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelDataSourceTests.swift; sourceTree = "<group>"; };
 		68DEA7CA2D7AA84600FCCF4E /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
+		68DEA7CD2D7AE55300FCCF4E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		68DEA7CF2D7AE57500FCCF4E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		68DEA7D12D7AE60000FCCF4E /* DetailHeroCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroCoordinator.swift; sourceTree = "<group>"; };
 		68E07FD12D7A329600C32766 /* EmptyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyContentView.swift; path = /Users/hugomorelli/Projects/MarvelWallapop/WallaMarvel/EmptyContentView.swift; sourceTree = "<absolute>"; };
 		68E07FD42D7A341D00C32766 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		68E07FD62D7A604800C32766 /* DetailHeroAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroAdapter.swift; sourceTree = "<group>"; };
@@ -216,6 +222,7 @@
 		1A0E3A972862F7E200132FCB /* WallaMarvel */ = {
 			isa = PBXGroup;
 			children = (
+				68DEA7CC2D7AE54200FCCF4E /* Coordinator */,
 				1A0E3A982862F7E200132FCB /* AppDelegate.swift */,
 				1A0E3AA12862F7E300132FCB /* Assets.xcassets */,
 				1A821EC72862FD6E0024D397 /* Data */,
@@ -417,6 +424,16 @@
 				68DEA7C82D7AA55900FCCF4E /* MarvelDataSourceTests.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		68DEA7CC2D7AE54200FCCF4E /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				68DEA7CD2D7AE55300FCCF4E /* Coordinator.swift */,
+				68DEA7CF2D7AE57500FCCF4E /* AppCoordinator.swift */,
+				68DEA7D12D7AE60000FCCF4E /* DetailHeroCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		68E07FD82D7A682800C32766 /* Presentation */ = {
@@ -698,6 +715,7 @@
 				1A7B9BBD286D81AA00EBC1A6 /* CharacterDataModel.swift in Sources */,
 				68FEFDA82D779E2600880A4D /* MarvelItemCell.swift in Sources */,
 				68E07FD52D7A341D00C32766 /* BaseViewController.swift in Sources */,
+				68DEA7CE2D7AE55300FCCF4E /* Coordinator.swift in Sources */,
 				1A0E3A992862F7E200132FCB /* AppDelegate.swift in Sources */,
 				1A821ECC2862FF990024D397 /* String+MD5.swift in Sources */,
 				1A821ED6286305590024D397 /* MarvelDataSource.swift in Sources */,
@@ -706,6 +724,7 @@
 				68BE66252D750E2D0038D407 /* AppError.swift in Sources */,
 				684E377F2D7640D4007FE3E4 /* HeroData.swift in Sources */,
 				1A3B732A286AE195007BF626 /* ListHeroesAdapter.swift in Sources */,
+				68DEA7D02D7AE57500FCCF4E /* AppCoordinator.swift in Sources */,
 				68FEFDB02D77A57B00880A4D /* HeroHeaderView.swift in Sources */,
 				68E07FDB2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift in Sources */,
 				1A7B9BBF286D81B600EBC1A6 /* Thumbnail.swift in Sources */,
@@ -725,6 +744,7 @@
 				68FEFDAC2D779EC400880A4D /* MarvelDetailSection.swift in Sources */,
 				1A821ED4286302EC0024D397 /* CharacterResponseDataModel.swift in Sources */,
 				1A821EC92862FE3C0024D397 /* APIClient.swift in Sources */,
+				68DEA7D22D7AE60000FCCF4E /* DetailHeroCoordinator.swift in Sources */,
 				684E37812D764357007FE3E4 /* HeroDataModel.swift in Sources */,
 				684E377D2D764089007FE3E4 /* GetHeroData.swift in Sources */,
 				684E37792D763F7C007FE3E4 /* DetailHeroPresenter.swift in Sources */,

@@ -8,6 +8,18 @@ final class ListHeroesViewController: BaseViewController {
   var isLoading = false
   let searchController = UISearchController(searchResultsController: nil)
   private var hasStartedSearching = false
+  weak var coordinator: AppCoordinatorProtocol?
+  
+  init(presenter: ListHeroesPresenterProtocol, coordinator: AppCoordinatorProtocol?) {
+    self.presenter = presenter
+    self.coordinator = coordinator
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   override func loadView() {
     view = ListHeroesView()
     view.backgroundColor = .white
@@ -90,11 +102,7 @@ extension ListHeroesViewController: ListHeroesUI {
 extension ListHeroesViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let character = listHeroesProvider?.heroes[indexPath.row] else { return }
-    let presenter = DetailHeroPresenter(character: character)
-    let detailHereoViewController = DetailHeroViewController(presenter: presenter)
-    presenter.inject(ui: detailHereoViewController)
-    
-    navigationController?.pushViewController(detailHereoViewController, animated: true)
+    coordinator?.goToDetail(character: character)
   }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
