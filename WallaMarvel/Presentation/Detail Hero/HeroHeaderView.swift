@@ -23,6 +23,8 @@ class HeroHeaderView: UICollectionReusableView {
     let label = UILabel()
     label.font = .boldSystemFont(ofSize: 24)
     label.textColor = .label
+    label.numberOfLines = 0
+    label.textAlignment = .center
     return label
   }()
   
@@ -54,6 +56,8 @@ class HeroHeaderView: UICollectionReusableView {
       
       nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 12),
       nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+      nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+      nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
       
       descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 6),
       descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
