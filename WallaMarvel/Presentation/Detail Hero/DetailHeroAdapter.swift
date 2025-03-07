@@ -29,12 +29,12 @@ final class DetailHeroAdapter: NSObject {
       return cell
     }
     
-    dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
-      let section = self.heroDetails.availableSections()[indexPath.section]
+    dataSource.supplementaryViewProvider = {[weak self] (collectionView, kind, indexPath) in
+      guard let section = self?.heroDetails.availableSections()[indexPath.section] else { return UICollectionReusableView() }
       
       if section == .hero  {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeroHeaderView.reuseIdentifier, for: indexPath) as? HeroHeaderView else { return UICollectionReusableView() }
-        let character =  self.heroDetails.hero
+        guard let character = self?.heroDetails.hero else { return UICollectionReusableView() }
         header.configure(with: character.name, description: character.description, image: character.thumbnailURL)
         return header
       } else  if section == .loader {
