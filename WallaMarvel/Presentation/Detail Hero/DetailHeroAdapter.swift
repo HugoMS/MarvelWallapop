@@ -37,6 +37,9 @@ final class DetailHeroAdapter: NSObject {
         let character =  self.heroDetails.hero
         header.configure(with: character.name, description: character.description, image: character.thumbnailURL)
         return header
+      } else  if section == .loader {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LoaderCollectionReusableView.reuseIdentifier, for: indexPath) as? LoaderCollectionReusableView else { return UICollectionReusableView() }
+        return header
       } else {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseIdentifier, for: indexPath) as? SectionHeaderView else {
           return UICollectionReusableView()

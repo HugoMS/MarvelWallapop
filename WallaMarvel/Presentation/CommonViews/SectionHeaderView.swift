@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Kingfisher
 
-class SectionHeaderView: UICollectionReusableView {
+final class SectionHeaderView: UICollectionReusableView {
   static let reuseIdentifier = "HeaderView"
   
   private let titleLabel = UILabel()

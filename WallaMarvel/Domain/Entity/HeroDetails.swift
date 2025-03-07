@@ -13,25 +13,28 @@ struct HeroDetails {
   var series: [HeroData]
   var events: [HeroData]
   var stories: [HeroData]
+  var loader: Bool
   
   init(
     hero: Character,
     comics: [HeroData] = [],
     series: [HeroData] = [],
     events: [HeroData] = [],
-    stories: [HeroData] = []
+    stories: [HeroData] = [],
+    loader: Bool = false
   ) {
     self.hero = hero
     self.comics = comics
     self.series = series
     self.events = events
     self.stories = stories
+    self.loader = loader
   }
 }
 
 extension HeroDetails {
   func availableSections() -> [MarvelDetailSection] {
-    var sections: [MarvelDetailSection] = [.hero]
+    var sections: [MarvelDetailSection] = [.hero ]
     if !comics.isEmpty {
       sections.append(.comics)
     }
@@ -43,6 +46,9 @@ extension HeroDetails {
     }
     if !stories.isEmpty {
       sections.append(.stories)
+    }
+    if loader {
+      sections.append(.loader)
     }
     return sections
     

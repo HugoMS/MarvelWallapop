@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HeroHeaderView: UICollectionReusableView {
+final class HeroHeaderView: UICollectionReusableView {
   static let reuseIdentifier = "HeroHeaderView"
   
   private let imageView: UIImageView = {

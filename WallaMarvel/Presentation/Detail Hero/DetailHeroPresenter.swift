@@ -47,7 +47,8 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
   }
   
   func viewDidLoad() {
-    heroDetails = HeroDetails(hero: character)
+    heroDetails = HeroDetails(hero: character, loader: true)
+    ui?.updateView()
     for type in HeroDataType.allCases {
       Task { await fetchHeroData(of: type) }
     }
@@ -56,6 +57,7 @@ extension DetailHeroPresenter: DetailHeroPresenterProtocol {
   private func fetchHeroData(of type: HeroDataType) async {
     do {
       let heroDataResult = try await getHeroDataUseCase.execute(by: character.id, from: 0, type: type).results
+      heroDetails.loader = false
       switch type {
       case .comic:
         heroDetails.comics = heroDataResult ?? []

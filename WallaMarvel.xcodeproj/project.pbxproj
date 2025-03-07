@@ -52,6 +52,7 @@
 		68E07FD22D7A329600C32766 /* EmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD12D7A329600C32766 /* EmptyContentView.swift */; };
 		68E07FD52D7A341D00C32766 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD42D7A341D00C32766 /* BaseViewController.swift */; };
 		68E07FD72D7A604800C32766 /* DetailHeroAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD62D7A604800C32766 /* DetailHeroAdapter.swift */; };
+		68E07FDB2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FDA2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift */; };
 		68FEFDA82D779E2600880A4D /* MarvelItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFDA72D779E2600880A4D /* MarvelItemCell.swift */; };
 		68FEFDAA2D779E9F00880A4D /* HeroDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFDA92D779E9F00880A4D /* HeroDetails.swift */; };
 		68FEFDAC2D779EC400880A4D /* MarvelDetailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FEFDAB2D779EC400880A4D /* MarvelDetailSection.swift */; };
@@ -134,6 +135,7 @@
 		68E07FD12D7A329600C32766 /* EmptyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyContentView.swift; path = /Users/hugomorelli/Projects/MarvelWallapop/WallaMarvel/EmptyContentView.swift; sourceTree = "<absolute>"; };
 		68E07FD42D7A341D00C32766 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		68E07FD62D7A604800C32766 /* DetailHeroAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroAdapter.swift; sourceTree = "<group>"; };
+		68E07FDA2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		68FEFDA72D779E2600880A4D /* MarvelItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelItemCell.swift; sourceTree = "<group>"; };
 		68FEFDA92D779E9F00880A4D /* HeroDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetails.swift; sourceTree = "<group>"; };
 		68FEFDAB2D779EC400880A4D /* MarvelDetailSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelDetailSection.swift; sourceTree = "<group>"; };
@@ -310,13 +312,11 @@
 		684E37772D763F70007FE3E4 /* Detail Hero */ = {
 			isa = PBXGroup;
 			children = (
-				684E37782D763F7C007FE3E4 /* DetailHeroPresenter.swift */,
-				684E377A2D763FA4007FE3E4 /* DetailHeroViewController.swift */,
-				684E37822D76572F007FE3E4 /* DetailHeroView.swift */,
-				68FEFDA72D779E2600880A4D /* MarvelItemCell.swift */,
-				68FEFDAD2D779F1A00880A4D /* SectionHeaderView.swift */,
-				68FEFDAF2D77A57B00880A4D /* HeroHeaderView.swift */,
 				68E07FD62D7A604800C32766 /* DetailHeroAdapter.swift */,
+				684E37782D763F7C007FE3E4 /* DetailHeroPresenter.swift */,
+				684E37822D76572F007FE3E4 /* DetailHeroView.swift */,
+				684E377A2D763FA4007FE3E4 /* DetailHeroViewController.swift */,
+				68FEFDA72D779E2600880A4D /* MarvelItemCell.swift */,
 			);
 			path = "Detail Hero";
 			sourceTree = "<group>";
@@ -407,8 +407,11 @@
 		68E07FD92D7A684100C32766 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				68FEFDAF2D77A57B00880A4D /* HeroHeaderView.swift */,
+				68FEFDAD2D779F1A00880A4D /* SectionHeaderView.swift */,
 				68E07FD12D7A329600C32766 /* EmptyContentView.swift */,
 				68E07FD42D7A341D00C32766 /* BaseViewController.swift */,
+				68E07FDA2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				684E377F2D7640D4007FE3E4 /* HeroData.swift in Sources */,
 				1A3B732A286AE195007BF626 /* ListHeroesAdapter.swift in Sources */,
 				68FEFDB02D77A57B00880A4D /* HeroHeaderView.swift in Sources */,
+				68E07FDB2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift in Sources */,
 				1A7B9BBF286D81B600EBC1A6 /* Thumbnail.swift in Sources */,
 				68BE661E2D7506FA0038D407 /* PaginatedResponse.swift in Sources */,
 				68FEFDAE2D779F1A00880A4D /* SectionHeaderView.swift in Sources */,

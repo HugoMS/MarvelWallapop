@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MarvelItemCell: UICollectionViewCell {
+final class MarvelItemCell: UICollectionViewCell {
   static let reuseIdentifier = "MarvelItemCell"
   
   private let imageView = UIImageView()

@@ -41,6 +41,7 @@ final class DetailHeroView: UIView {
     collectionView.register(MarvelItemCell.self, forCellWithReuseIdentifier: MarvelItemCell.reuseIdentifier)
     collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)    
     collectionView.register(HeroHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeroHeaderView.reuseIdentifier)
+    collectionView.register(LoaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: LoaderCollectionReusableView.reuseIdentifier)
     addSubview(collectionView)
   }
   
@@ -72,7 +73,7 @@ final class DetailHeroView: UIView {
       section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
       
       // Header
-      var headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
+      var headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
       if sectionIndex == 0 {
         headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(400))
       }
