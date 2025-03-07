@@ -15,6 +15,7 @@ protocol EmptyContentViewProtocol: AnyObject {
 final class EmptyContentView: UIView {
   
   weak var delegate: EmptyContentViewProtocol?
+  private var showReloadButton: Bool = false
   
   private let messageLabel: UILabel = {
     let label = UILabel()
@@ -50,8 +51,9 @@ final class EmptyContentView: UIView {
     setupUI()
   }
   
-  init(delegate: EmptyContentViewProtocol?) {
+  init(delegate: EmptyContentViewProtocol?, showReloadButton: Bool = true) {
     self.delegate = delegate
+    self.showReloadButton = showReloadButton
     super.init(frame: .zero)
     setupUI()
   }
@@ -65,6 +67,9 @@ final class EmptyContentView: UIView {
     addSubview(messageLabel)
     addSubview(emptyImageView)
     addSubview(reloadButton)
+    
+    reloadButton.isHidden = !showReloadButton
+    
     backgroundColor = .systemBackground
     messageLabel.translatesAutoresizingMaskIntoConstraints = false
     reloadButton.translatesAutoresizingMaskIntoConstraints = false

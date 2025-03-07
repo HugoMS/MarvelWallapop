@@ -10,7 +10,7 @@ protocol ListHeroesPresenterProtocol: AnyObject {
 protocol ListHeroesUI: AnyObject {
   func update(heroes: [Character])
   func finishPagination()
-  func showEmpty(delegate: EmptyContentViewProtocol?)
+  func showEmpty(delegate: EmptyContentViewProtocol?, showReloadButton: Bool)
   func resetView()
 }
 
@@ -39,7 +39,7 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
       totalCount = data.total ?? 0
       ui?.update(heroes: data.results ?? [])
     } catch {
-      ui?.showEmpty(delegate: self)
+      ui?.showEmpty(delegate: self, showReloadButton: true)
     }
   }
   

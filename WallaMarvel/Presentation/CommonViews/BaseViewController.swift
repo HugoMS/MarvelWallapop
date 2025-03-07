@@ -15,8 +15,8 @@ class BaseViewController: UIViewController {
     }
   }
   
-  func showEmptyContentView(delegate: EmptyContentViewProtocol? = nil) {
-    let value = EmptyContentView(delegate: delegate)
+  func showEmptyContentView(delegate: EmptyContentViewProtocol? = nil, showReloadButton: Bool) {
+    let value = EmptyContentView(delegate: delegate, showReloadButton: showReloadButton)
     emptyContentView = value
     value.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(value)
