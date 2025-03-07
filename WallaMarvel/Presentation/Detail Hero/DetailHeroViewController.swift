@@ -38,10 +38,9 @@ final class DetailHeroViewController: BaseViewController {
   }
 }
 
-// MARK: - Private Methods
+// MARK: - DetailHeroUI
 
 extension DetailHeroViewController: DetailHeroUI {
-
   
   func updateView() {
     let heroDetails = presenter.getHeroDetails()
