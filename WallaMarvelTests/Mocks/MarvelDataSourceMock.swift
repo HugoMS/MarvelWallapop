@@ -11,11 +11,11 @@ import Foundation
 class MarvelDataSourceMock: MarvelDataSourceProtocol {
   var shouldThrowError = false
   var getHeroesCount = 0
-  var getHeroesResult: PaginatedResponseModel<WallaMarvel.CharacterDataModel> = PaginatedResponseModel(offset: 0, limit: 0, total: 0, count: 0, results: [])
-  var getHeroData = 0
+  var getHeroesResult: PaginatedResponseModel<CharacterDataModel> = PaginatedResponseModel(offset: 0, limit: 0, total: 0, count: 0, results: [])
+  var getHeroDataCount = 0
   
   
-  func getHeroes(from offset: Int, by searchKey: String?) async throws -> PaginatedResponseModel<WallaMarvel.CharacterDataModel> {
+  func getHeroes(from offset: Int, by searchKey: String?) async throws -> PaginatedResponseModel<CharacterDataModel> {
     getHeroesCount += 1
     if shouldThrowError {
       throw URLError(.badServerResponse)
@@ -23,8 +23,8 @@ class MarvelDataSourceMock: MarvelDataSourceProtocol {
     return getHeroesResult
   }
   
-  func getHeroData(by characterId: Int, from offset: Int, type: WallaMarvel.HeroDataType) async throws -> PaginatedResponseModel<WallaMarvel.HeroDataModel> {
-    getHeroData += 1
+  func getHeroData(by characterId: Int, from offset: Int, type: HeroDataType) async throws -> PaginatedResponseModel<HeroDataModel> {
+    getHeroDataCount += 1
     if shouldThrowError {
       throw URLError(.badServerResponse)
     }

@@ -61,4 +61,37 @@ final class ListHeroesPresenterTests: XCTestCase {
     
   }
   
+  
+  func test_loadMoreCharactersIfNeededNextPage() async {
+    let executeResult: PaginatedResponse<Character> = .init(offset: 0, limit: 20, total: 21, count: 1, results: [.init(id: 1, name: "Hulk", description: "Strongest Avenger", thumbnailURL: nil)])
+    useCaseMock.shouldThrowError = false
+    useCaseMock.executeResult = executeResult
+    
+    await sut.getHeroes(from: 0)
+    XCTAssertEqual(useCaseMock.executeCount, 1)
+    XCTAssertEqual(viewMock.updateCount, 1)
+    
+    await sut.loadMoreCharactersIfNeeded()
+    
+    XCTAssertEqual(useCaseMock.executeCount, 2)
+    XCTAssertEqual(viewMock.updateCount, 2)
+    XCTAssertEqual(viewMock.showEmptyCount, 0)
+  }
+  
+  func test_loadMoreCharactersIfNeededNoMorePages() async {
+    let executeResult: PaginatedResponse<Character> = .init(offset: 0, limit: 1, total: 1, count: 1, results: [.init(id: 1, name: "Hulk", description: "Strongest Avenger", thumbnailURL: nil)])
+    useCaseMock.shouldThrowError = false
+    useCaseMock.executeResult = executeResult
+    
+    await sut.getHeroes(from: 0)
+    XCTAssertEqual(useCaseMock.executeCount, 1)
+    XCTAssertEqual(viewMock.updateCount, 1)
+    
+    await sut.loadMoreCharactersIfNeeded()
+    
+    XCTAssertEqual(useCaseMock.executeCount, 1)
+    XCTAssertEqual(viewMock.updateCount, 1)
+    XCTAssertEqual(viewMock.finishPaginationCount, 1)
+  }
+  
 }

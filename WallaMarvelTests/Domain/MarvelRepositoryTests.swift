@@ -61,5 +61,35 @@ final class MarvelRepositoryTests: XCTestCase {
     
     XCTAssertEqual(dataSourceMock.getHeroesCount, 1)
   }
+  
+  func test_GetHeroDataSuccess() async throws {
+    // Given
+    dataSourceMock.shouldThrowError = false
+    
+    // When
+    let result = try await sut.getHeroData(by: 0, from: 0, type: .comic)
+    
+    // Then
+    
+    XCTAssertEqual(dataSourceMock.getHeroDataCount, 1)
+    XCTAssertNoThrow(result)
+  }
+  
+  
+  func test_test_GetHeroDataSuccess() async {
+    // Given
+    dataSourceMock.shouldThrowError = true
+    
+    do {
+      // When
+      _ = try await sut.getHeroData(by: 0, from: 0, type: .comic)
+      XCTFail("La función no lanzó un error cuando debía hacerlo")
+    } catch {
+      // Then
+      XCTAssertEqual(error as? URLError, URLError(.badServerResponse))
+    }
+    
+    XCTAssertEqual(dataSourceMock.getHeroDataCount, 1)
+  }
 
 }

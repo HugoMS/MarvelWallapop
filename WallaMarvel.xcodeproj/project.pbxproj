@@ -50,6 +50,8 @@
 		68BE66222D750B2B0038D407 /* BaseResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE66212D750B2B0038D407 /* BaseResponseModel.swift */; };
 		68BE66252D750E2D0038D407 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BE66242D750E2D0038D407 /* AppError.swift */; };
 		68DEA7C52D7A9E2800FCCF4E /* GetHeroDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7C42D7A9E2800FCCF4E /* GetHeroDataTests.swift */; };
+		68DEA7C92D7AA55900FCCF4E /* MarvelDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7C82D7AA55900FCCF4E /* MarvelDataSourceTests.swift */; };
+		68DEA7CB2D7AA84600FCCF4E /* APIClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7CA2D7AA84600FCCF4E /* APIClientMock.swift */; };
 		68E07FD22D7A329600C32766 /* EmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD12D7A329600C32766 /* EmptyContentView.swift */; };
 		68E07FD52D7A341D00C32766 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD42D7A341D00C32766 /* BaseViewController.swift */; };
 		68E07FD72D7A604800C32766 /* DetailHeroAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD62D7A604800C32766 /* DetailHeroAdapter.swift */; };
@@ -134,6 +136,8 @@
 		68BE66212D750B2B0038D407 /* BaseResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponseModel.swift; sourceTree = "<group>"; };
 		68BE66242D750E2D0038D407 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		68DEA7C42D7A9E2800FCCF4E /* GetHeroDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeroDataTests.swift; sourceTree = "<group>"; };
+		68DEA7C82D7AA55900FCCF4E /* MarvelDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelDataSourceTests.swift; sourceTree = "<group>"; };
+		68DEA7CA2D7AA84600FCCF4E /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
 		68E07FD12D7A329600C32766 /* EmptyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyContentView.swift; path = /Users/hugomorelli/Projects/MarvelWallapop/WallaMarvel/EmptyContentView.swift; sourceTree = "<absolute>"; };
 		68E07FD42D7A341D00C32766 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		68E07FD62D7A604800C32766 /* DetailHeroAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroAdapter.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 		1A0E3AAE2862F7E300132FCB /* WallaMarvelTests */ = {
 			isa = PBXGroup;
 			children = (
+				68DEA7C72D7AA54900FCCF4E /* Data */,
 				689276E52D78DAD30024085C /* Domain */,
 				689276E82D78DF0E0024085C /* Mocks */,
 				68DEA7C62D7A9F5800FCCF4E /* Presentation */,
@@ -338,6 +343,7 @@
 				689276F72D78F62E0024085C /* ListHeroesUIMock.swift */,
 				689276E92D78DF1B0024085C /* MarvelDataSourceMock.swift */,
 				689276EF2D78EF510024085C /* MarvelRepositoryMock.swift */,
+				68DEA7CA2D7AA84600FCCF4E /* APIClientMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -403,6 +409,14 @@
 				689276F12D78F3870024085C /* List Heroes */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		68DEA7C72D7AA54900FCCF4E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				68DEA7C82D7AA55900FCCF4E /* MarvelDataSourceTests.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		68E07FD82D7A682800C32766 /* Presentation */ = {
@@ -723,8 +737,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				689276F42D78F3A60024085C /* ListHeroesPresenterTests.swift in Sources */,
+				68DEA7CB2D7AA84600FCCF4E /* APIClientMock.swift in Sources */,
 				689276EE2D78EEE10024085C /* GetHeroesTests.swift in Sources */,
 				689276FD2D790B920024085C /* GetHeroDataUseCaseMock.swift in Sources */,
+				68DEA7C92D7AA55900FCCF4E /* MarvelDataSourceTests.swift in Sources */,
 				689276EA2D78DF1B0024085C /* MarvelDataSourceMock.swift in Sources */,
 				689276F82D78F62E0024085C /* ListHeroesUIMock.swift in Sources */,
 				68DEA7C52D7A9E2800FCCF4E /* GetHeroDataTests.swift in Sources */,

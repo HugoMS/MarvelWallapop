@@ -34,4 +34,28 @@ final class DetailHeroPresenterTests: XCTestCase {
   func test_SUTNotNil() throws {
     XCTAssertNotNil(sut)
   }
+  
+  func test_getHeroDetails() {
+    let heroDetails = sut.getHeroDetails()
+    XCTAssertEqual(heroDetails.hero.id, 1)
+    XCTAssertEqual(heroDetails.hero.name, "Iron Man")
+    XCTAssertEqual(heroDetails.comics, [])
+    XCTAssertEqual(heroDetails.events, [])
+    XCTAssertEqual(heroDetails.series, [])
+    XCTAssertEqual(heroDetails.stories, [])
+    XCTAssertEqual(heroDetails.loader, false)
+  }
+  
+  func test_getCharacter() {
+    let expectedCharacter: Character = .init(id: 1, name: "Iron Man")
+    let character = sut.getCharacter()
+    XCTAssertEqual(character, expectedCharacter)
+  }
+  
+  func test_screenTitle() {
+    let expectedTitle = "Hero Detail"
+    let title = sut.screenTitle()
+    XCTAssertEqual(title, expectedTitle)
+    
+  }
 }
