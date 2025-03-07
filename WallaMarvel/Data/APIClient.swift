@@ -6,7 +6,7 @@ protocol APIClientProtocol {
 }
 
 enum APIConstants {
-  static let defaultLimit = 100
+  static let defaultLimit = 20
 }
 
 enum NetworkError: Error {
