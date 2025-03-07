@@ -47,7 +47,10 @@ final class APIClient: APIClientProtocol {
   
   func getHeroes(from offset: Int, by searchKey: String?) async throws -> BaseResponseModel<PaginatedResponseModel<CharacterDataModel>> {
     let endpoint = "\(baseURL)"
-    let urlComponents = try getURLComponents(endpoint: endpoint, offset: offset)
+    var urlComponents = try getURLComponents(endpoint: endpoint, offset: offset)
+    if let searchKey {
+      urlComponents.queryItems?.append(URLQueryItem(name: "nameStartsWith", value: searchKey))
+    }
     guard let url = urlComponents.url else { throw NetworkError.badURL }
     return try await fetchData(from: url)
   }
