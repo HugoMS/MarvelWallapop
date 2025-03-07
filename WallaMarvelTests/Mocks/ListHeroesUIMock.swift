@@ -13,8 +13,9 @@ class ListHeroesUIMock : ListHeroesUI {
   var finishPaginationCount = 0
   var showEmptyCount = 0
   var resetViewCount = 0
+  var showLoaderCount = 0
   
-  func update(heroes: [Character]) {
+  func update(heroes: [Character], pagination: Bool) {
     updateCount += 1
   }
   
@@ -22,11 +23,15 @@ class ListHeroesUIMock : ListHeroesUI {
     finishPaginationCount += 1
   }
   
-  func showEmpty(delegate: (any WallaMarvel.EmptyContentViewProtocol)?) {
+  func showEmpty(delegate: EmptyContentViewProtocol?, showReloadButton: Bool) {
     showEmptyCount += 1
   }
   
   func resetView() {
     resetViewCount += 1
+  }
+  
+  func showLoader(visible: Bool) {
+    showLoaderCount += 1
   }
 }
