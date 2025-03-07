@@ -6,8 +6,8 @@ final class ListHeroesViewController: BaseViewController {
   var presenter: ListHeroesPresenterProtocol?
   var listHeroesProvider: ListHeroesAdapter?
   var isLoading = false
-  private let searchController = UISearchController(searchResultsController: nil)
-  
+  let searchController = UISearchController(searchResultsController: nil)
+  private var hasStartedSearching = false
   override func loadView() {
     view = ListHeroesView()
     view.backgroundColor = .white
@@ -24,6 +24,7 @@ final class ListHeroesViewController: BaseViewController {
     }
     title = presenter?.screenTitle()
     mainView.heroesTableView.delegate = self
+    configureSearchController()
   }
   
   func loadData() {
@@ -46,20 +47,27 @@ final class ListHeroesViewController: BaseViewController {
 }
 
 extension ListHeroesViewController: ListHeroesUI {
-  func showEmpty(delegate: (any EmptyContentViewProtocol)?) {
+  func showEmpty(delegate: (any EmptyContentViewProtocol)?, showReloadButton: Bool) {
     DispatchQueue.main.async { [weak self] in
-      self?.showEmptyContentView(delegate: delegate)
+      self?.showEmptyContentView(delegate: delegate, showReloadButton: showReloadButton)
     }
   }
   
-  func update(heroes: [Character]) {
-    hideEmptyContentView()
-    listHeroesProvider?.heroes += heroes
-    isLoading = false
+  func update(heroes: [Character], pagination: Bool) {
+    if pagination {
+      listHeroesProvider?.heroes += heroes
+    } else {
+      listHeroesProvider?.heroes = heroes
+    }
     
-    finishPagination()
+    isLoading = false
     DispatchQueue.main.async {
+      heroes.isEmpty ?  self.showEmpty(delegate: nil, showReloadButton: false)  : self.hideEmptyContentView()
+      if !pagination {
+        self.mainView.heroesTableView.scrollsToTop = true
+      }
       self.toggleActivityIndicator(visible: false)
+      self.mainView.heroesTableView.tableFooterView = nil
     }
   }
   
@@ -117,5 +125,33 @@ private extension ListHeroesViewController {
       activityIndicator?.removeFromSuperview()
       activityIndicator = nil
     }
+  }
+  
+  func configureSearchController() {
+    searchController.searchResultsUpdater = self
+    searchController.obscuresBackgroundDuringPresentation = false
+    searchController.searchBar.placeholder = "Find..."
+    navigationItem.searchController = searchController
+    navigationItem.hidesSearchBarWhenScrolling = true
+    
+    definesPresentationContext = true
+  }
+}
+
+
+// MARK: - UISearchResultsUpdating
+extension ListHeroesViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    let searchText = searchController.searchBar.text ?? ""
+    
+    if !hasStartedSearching {
+      hasStartedSearching = true
+      return
+    }
+    
+    if searchText.isEmpty {
+      hasStartedSearching = false
+    }
+    presenter?.search(for: searchText)    
   }
 }

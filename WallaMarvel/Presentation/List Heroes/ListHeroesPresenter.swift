@@ -1,14 +1,16 @@
 import Foundation
+import Combine
 
 protocol ListHeroesPresenterProtocol: AnyObject {
   var ui: ListHeroesUI? { get set }
   func screenTitle() -> String
   func getHeroes(from offset: Int) async
   func loadMoreCharactersIfNeeded() async
+  func search(for text: String)
 }
 
 protocol ListHeroesUI: AnyObject {
-  func update(heroes: [Character])
+  func update(heroes: [Character], pagination: Bool)
   func finishPagination()
   func showEmpty(delegate: EmptyContentViewProtocol?, showReloadButton: Bool)
   func resetView()
@@ -21,10 +23,14 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
   private var limit = APIConstants.defaultLimit
   private var totalCount = 0
   private var currentOffset = 0
+  private var searchQuery = PassthroughSubject<String, Never>()
+  private var cancellables = Set<AnyCancellable>()
+  
   
   
   init(getHeroesUseCase: GetHeroesUseCaseProtocol = GetHeroes()) {
     self.getHeroesUseCase = getHeroesUseCase
+    setupSearchObserver()
   }
   
   func screenTitle() -> String {
@@ -35,9 +41,10 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
   
   func getHeroes(from offset: Int) async {
     do {
-      let data = try await getHeroesUseCase.execute(from: offset, by: searchText)
+      let data = try await getHeroesUseCase.execute(from: offset, by: searchText.isEmpty ? nil : searchText)
       totalCount = data.total ?? 0
-      ui?.update(heroes: data.results ?? [])
+      currentOffset += limit
+      ui?.update(heroes: data.results ?? [], pagination: data.offset != 0)
     } catch {
       ui?.showEmpty(delegate: self, showReloadButton: true)
     }
@@ -47,8 +54,12 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
     guard currentOffset < totalCount else {
       ui?.finishPagination()
       return }
-    currentOffset += limit
+   
     await getHeroes(from: currentOffset)
+  }
+  
+  func search(for text: String){
+    searchQuery.send(text)
   }
 }
 
@@ -64,3 +75,27 @@ extension ListHeroesPresenter: EmptyContentViewProtocol {
   }
   
 }
+
+// MARK: - Private Methods
+
+private extension ListHeroesPresenter {
+  private func setupSearchObserver() {
+    searchQuery
+      .debounce(for: .milliseconds(700), scheduler: DispatchQueue.main)
+      .removeDuplicates()
+      .sink { [weak self] query in
+        self?.performSearch(query: query)
+      }
+      .store(in: &cancellables)
+  }
+  
+  private func performSearch(query: String) {
+    
+    currentOffset = 0
+    searchText = query
+    Task{
+      await getHeroes(from: 0)
+    }
+  }
+}
+  
