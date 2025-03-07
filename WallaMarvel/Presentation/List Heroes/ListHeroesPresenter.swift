@@ -14,6 +14,7 @@ protocol ListHeroesUI: AnyObject {
   func finishPagination()
   func showEmpty(delegate: EmptyContentViewProtocol?, showReloadButton: Bool)
   func resetView()
+  func showLoader(visible: Bool)
 }
 
 final class ListHeroesPresenter: ListHeroesPresenterProtocol {
@@ -40,11 +41,15 @@ final class ListHeroesPresenter: ListHeroesPresenterProtocol {
   // MARK: UseCases
   
   func getHeroes(from offset: Int) async {
+    if offset == 0 {
+      ui?.showLoader(visible: true)
+    }
     do {
       let data = try await getHeroesUseCase.execute(from: offset, by: searchText.isEmpty ? nil : searchText)
       totalCount = data.total ?? 0
       currentOffset += limit
       ui?.update(heroes: data.results ?? [], pagination: data.offset != 0)
+      ui?.showLoader(visible: false)
     } catch {
       ui?.showEmpty(delegate: self, showReloadButton: true)
     }

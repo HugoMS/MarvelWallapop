@@ -15,7 +15,6 @@ final class ListHeroesViewController: BaseViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    toggleActivityIndicator(visible: true)
     listHeroesProvider = ListHeroesAdapter(tableView: mainView.heroesTableView)
     presenter?.ui = self
     Task {
@@ -66,7 +65,6 @@ extension ListHeroesViewController: ListHeroesUI {
       if !pagination {
         self.mainView.heroesTableView.scrollsToTop = true
       }
-      self.toggleActivityIndicator(visible: false)
       self.mainView.heroesTableView.tableFooterView = nil
     }
   }
@@ -77,9 +75,15 @@ extension ListHeroesViewController: ListHeroesUI {
     }
   }
   
+   func showLoader(visible: Bool) {
+     DispatchQueue.main.async {
+       self.toggleActivityIndicator(visible: visible)
+     }
+  }
+  
   func resetView() {
     hideEmptyContentView()
-    toggleActivityIndicator(visible: true)
+    showLoader(visible: true)
   }
 }
 
