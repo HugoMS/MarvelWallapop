@@ -227,10 +227,9 @@
 		1A0E3AAE2862F7E300132FCB /* WallaMarvelTests */ = {
 			isa = PBXGroup;
 			children = (
-				689276F92D78F6B80024085C /* Detail Hereo */,
-				689276F12D78F3870024085C /* List Heroes */,
 				689276E52D78DAD30024085C /* Domain */,
 				689276E82D78DF0E0024085C /* Mocks */,
+				68DEA7C62D7A9F5800FCCF4E /* Presentation */,
 				689276EC2D78EEC60024085C /* UseCases */,
 				1A0E3AAF2862F7E300132FCB /* WallaMarvelTests.swift */,
 			);
@@ -395,6 +394,15 @@
 				68BE66242D750E2D0038D407 /* AppError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		68DEA7C62D7A9F5800FCCF4E /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				689276F92D78F6B80024085C /* Detail Hereo */,
+				689276F12D78F3870024085C /* List Heroes */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		68E07FD82D7A682800C32766 /* Presentation */ = {
