@@ -46,6 +46,7 @@ final class ListHeroesTableViewCell: UITableViewCell {
       heroeImageView.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -12),
       
       heroeName.leadingAnchor.constraint(equalTo: heroeImageView.trailingAnchor, constant: 20),
+      heroeName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
       heroeName.centerYAnchor.constraint(equalTo: heroeImageView.centerYAnchor),
     ])
   }
