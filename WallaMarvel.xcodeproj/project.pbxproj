@@ -27,6 +27,7 @@
 		1A821ED82863081A0024D397 /* MarvelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A821ED72863081A0024D397 /* MarvelRepository.swift */; };
 		1A821EDA2863096C0024D397 /* ListHeroesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A821ED92863096C0024D397 /* ListHeroesPresenter.swift */; };
 		1AC0347F2863214900E93178 /* GetHeroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC0347E2863214900E93178 /* GetHeroes.swift */; };
+		68266FD52D81999A00733BBD /* EmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68266FD42D81999A00733BBD /* EmptyContentView.swift */; };
 		684E37792D763F7C007FE3E4 /* DetailHeroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684E37782D763F7C007FE3E4 /* DetailHeroPresenter.swift */; };
 		684E377B2D763FA4007FE3E4 /* DetailHeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684E377A2D763FA4007FE3E4 /* DetailHeroViewController.swift */; };
 		684E377D2D764089007FE3E4 /* GetHeroData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684E377C2D764089007FE3E4 /* GetHeroData.swift */; };
@@ -55,7 +56,6 @@
 		68DEA7CE2D7AE55300FCCF4E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7CD2D7AE55300FCCF4E /* Coordinator.swift */; };
 		68DEA7D02D7AE57500FCCF4E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7CF2D7AE57500FCCF4E /* AppCoordinator.swift */; };
 		68DEA7D22D7AE60000FCCF4E /* DetailHeroCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DEA7D12D7AE60000FCCF4E /* DetailHeroCoordinator.swift */; };
-		68E07FD22D7A329600C32766 /* EmptyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD12D7A329600C32766 /* EmptyContentView.swift */; };
 		68E07FD52D7A341D00C32766 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD42D7A341D00C32766 /* BaseViewController.swift */; };
 		68E07FD72D7A604800C32766 /* DetailHeroAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FD62D7A604800C32766 /* DetailHeroAdapter.swift */; };
 		68E07FDB2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E07FDA2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift */; };
@@ -116,6 +116,7 @@
 		1AC0347E2863214900E93178 /* GetHeroes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeroes.swift; sourceTree = "<group>"; };
 		27133A00A66EF91557A95FF4 /* Pods_WallaMarvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WallaMarvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D0BB56F90DDBDFBE6933F7 /* Pods_WallaMarvelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WallaMarvelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68266FD42D81999A00733BBD /* EmptyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyContentView.swift; sourceTree = "<group>"; };
 		684E37782D763F7C007FE3E4 /* DetailHeroPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroPresenter.swift; sourceTree = "<group>"; };
 		684E377A2D763FA4007FE3E4 /* DetailHeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroViewController.swift; sourceTree = "<group>"; };
 		684E377C2D764089007FE3E4 /* GetHeroData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHeroData.swift; sourceTree = "<group>"; };
@@ -144,7 +145,6 @@
 		68DEA7CD2D7AE55300FCCF4E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		68DEA7CF2D7AE57500FCCF4E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		68DEA7D12D7AE60000FCCF4E /* DetailHeroCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroCoordinator.swift; sourceTree = "<group>"; };
-		68E07FD12D7A329600C32766 /* EmptyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyContentView.swift; path = /Users/hugomorelli/Projects/MarvelWallapop/WallaMarvel/EmptyContentView.swift; sourceTree = "<absolute>"; };
 		68E07FD42D7A341D00C32766 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		68E07FD62D7A604800C32766 /* DetailHeroAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeroAdapter.swift; sourceTree = "<group>"; };
 		68E07FDA2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -451,9 +451,9 @@
 			children = (
 				68FEFDAF2D77A57B00880A4D /* HeroHeaderView.swift */,
 				68FEFDAD2D779F1A00880A4D /* SectionHeaderView.swift */,
-				68E07FD12D7A329600C32766 /* EmptyContentView.swift */,
 				68E07FD42D7A341D00C32766 /* BaseViewController.swift */,
 				68E07FDA2D7A9CCC00C32766 /* LoaderCollectionReusableView.swift */,
+				68266FD42D81999A00733BBD /* EmptyContentView.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -731,11 +731,11 @@
 				68BE661E2D7506FA0038D407 /* PaginatedResponse.swift in Sources */,
 				68FEFDAE2D779F1A00880A4D /* SectionHeaderView.swift in Sources */,
 				68BE66172D7506960038D407 /* PaginatedResponseModel+DomainMapper.swift in Sources */,
+				68266FD52D81999A00733BBD /* EmptyContentView.swift in Sources */,
 				1A821EDA2863096C0024D397 /* ListHeroesPresenter.swift in Sources */,
 				684E37832D76572F007FE3E4 /* DetailHeroView.swift in Sources */,
 				1A0E3A9B2862F7E200132FCB /* SceneDelegate.swift in Sources */,
 				68BE661B2D7506D70038D407 /* DomainMapper.swift in Sources */,
-				68E07FD22D7A329600C32766 /* EmptyContentView.swift in Sources */,
 				68BE66222D750B2B0038D407 /* BaseResponseModel.swift in Sources */,
 				1A3B7326286ADD1E007BF626 /* ListHeroesTableView.swift in Sources */,
 				68BE66192D7506C10038D407 /* PaginatedResponseModel.swift in Sources */,

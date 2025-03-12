@@ -1,6 +1,6 @@
 //
 //  EmptyContentView.swift
-//  
+//
 //
 //  Created by Hugo Morelli on 6/3/25.
 //
